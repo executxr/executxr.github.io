@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cederik's Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+		align-items: center; /* Center content horizontally */
+        }
+
+        .outer-container {
+            max-width: 800px; /* Adjusted max-width */
+            margin: 80px auto 20px; /* Centered the container */
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .styled-section {
+            margin-bottom: 40px; /* Add margin between inner containers if needed */
+            background-color: #f0f0f0; /* Background color of the inner container */
+            padding: 20px;
+            border-radius: 8px; /* Add border-radius for a rounded corner effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow for a shadow effect */
+        }
+
+        .styled-section  h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #414a4c;
+        }
+
+        a {
+            color: #007BFF;
+	text-decoration: none;
+        }
+
+	.learn-more-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #FFA500; /* Orange color */
+        color: #fff;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    }
+
+    .learn-more-btn:hover {
+        background-color: #FF8C00; /* Slightly darker orange on hover */
+    }
+
+	/* Popup Styles */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+	nav {
+            background-color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1002;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #FFA500;
+        }
+
+	/* Add padding to the target element to account for the fixed navigation height */
+	section[id] {
+    		padding-top: 80px; /* Adjust this value based on your navigation height */
+    	margin-top: -80px; /* Offset the padding to maintain the layout */
+	}
+
+	/* Hamburger Menu Styles */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1001;
+        }
+
+        .hamburger-bar {
+            height: 3px;
+            width: 25px;
+            background-color: #333;
+            margin: 5px 0;
+        }
+
+	#mobile-nav {
+        	display: none; /* Close Mobile nav by default */
+    	}
+
+	#mobile-nav .close-btn {
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    padding-right: 30px;
+    text-align: right;
+    background-color: #333;
+}
+	
+	/* Toggle Menu Styles for Mobile */
+@media (max-width: 768px) {
+    nav {
+        padding: 20px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+	display: none;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px; /* Adjusted margin-top for spacing */
+    }
+
+    nav li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .container {
+        max-width: 80%;
+        margin-top: 80px;
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+
+    /* Show mobile navigation when hamburger menu is clicked */
+    #mobile-nav {
+        display: none;
+    }
+
+    /* Hide desktop navigation in mobile view */
+    #desktop-nav {
+        display: none;
+    }
+}
+    </style>
+</head>
+<body>
+
+<!-- Desktop Navigation -->
+<nav id="desktop-nav">
+    <ul>
+        <li><a href="#frameworks">Frameworks</a></li>
+        <li><a href="#commercial-ventures">Commercial Ventures</a></li>
+        <li><a href="#non-profit-ventures">Non-Profit Ventures</a></li>
+        <li><a href="#connect">Let's connect</a></li>
+        <!-- Add more sections as needed -->
+    </ul>
+</nav>
+
+<!-- Hamburger Menu for Mobile -->
+<div class="hamburger-menu" onclick="toggleNav()">
+    <div class="hamburger-bar"></div>
+    <div class="hamburger-bar"></div>
+    <div class="hamburger-bar"></div>
+  </div>
+
+  <nav id="mobile-nav">
+	<div class="close-btn" onclick="toggleNav()">X</div>
+    <ul>
+      <li><a href="#frameworks">Frameworks</a></li>
+      <li><a href="#commercial-ventures">Commercial Ventures</a></li>
+	<li><a href="#non-profit-ventures">Non-Profit Ventures</a></li>
+	<li><a href="#connect">Let's connect</a></li>
+      <!-- Add more sections as needed -->
+    </ul>
+  </nav>
+
+<div class="outer-container" id="content">
+  <section>
+    <div class="styled-section">
+    <h1>Introduction</h1>
+
+    <!-- Introduction -->
+
+      <p>Greetings! I'm Cederik, and I'm inviting you to join an exciting journey where big ideas come to life across various ventures, all driven by a common purpose – shaping a future that benefits as many people as possible.<p>
+<p>Whether it's wearing the hat of a Co-Founder, Startup Advisor, Managing Director, Strategist, or someone who enjoys hacking things together, I bring my frameworks and hands-on experience to breathe life into ventures, make smart investments, and offer valuable consultancy services.<p>
+<p>In the world of boardrooms, strategy sessions, and the catacombs of code, I navigate the art of project and program management to ensure ventures align with goals and deliver success, bringing ideas to life.<p>
+<p>Whether you're after strategic advice or someone to roll up their sleeves, let's chat. Together, we'll make a positive impact, and hey, we'll try to keep those peanut butter sandwiches to a minimum along the way!<p>
+<a href="#connect">Let's connect</a>
+    </div>
+  </section>
+
+  <!-- Frameworks -->
+  <section id="frameworks">
+<div class="styled-section">
+    <h2>Frameworks</h2>
+
+    <!-- The Nim Framework -->
+    <div>
+      <h3>The Nim Framework: A Comprehensive Guide to XR Mastery</h3>
+      <p>
+        Serving as your comprehensive guide to establishing a unified language in the ever-evolving landscape of XR.</p>
+<p> As a seasoned navigator, I provide a common language to traverse from the strategic boardroom decisions to the critical translation phase led by program and project managers. Here, we meticulously translate high-level strategy into actionable tactics and projects. Moving forward, the journey takes us into the creative realm, where design isn't just about aesthetics but a strategic effort to evoke emotions. We then descend into the catacombs of code, where engineering transforms visions into scalable machines.</p> 
+<p>The Nim Framework is your essential link, fostering a shared language between XR strategy, the crucial translation phase led by program and project managers, creative design, and robust engineering. Join me in seamlessly connecting strategy to tactics and projects, and witness your XR initiatives flourish at every stage.</p><p> The Nim Framework – where strategic vision transforms into immersive reality.
+      </p>
+	<div class="learn-more-btn" onclick="redirectToPage('pages/future-page.html', false)">Learn More</div>
+    </div>
+
+    <!-- The O Framework -->
+    <div>
+      <h3>The O Framework: Fostering Consensus in Communities</h3>
+      <p>
+        The O Framework addresses the urgent need for community consensus and combats polarization. Designed to provide a platform for diverse voices, O fosters common ground, transcending boundaries, and creating inclusive spaces for collaborative decision-making.
+      </p>
+<div class="learn-more-btn" onclick="redirectToPage('pages/future-page.html', false)">Learn More</div>
+    </div>
+
+    <!-- From Parasite to Epiphyte Framework -->
+    <div>
+      <h3>From Parasite to Epiphyte - A Search for Sustainability</h3>
+      <p>
+        In this exploration, we transition from being parasites on our planet to becoming epiphytes in a search for sustainability. Much like epiphytes attach themselves to plants without causing harm, the aim is to discover sustainable practices where humans coexist with the planet without causing harm.
+      </p>
+<div class="learn-more-btn" onclick="redirectToPage('pages/future-page.html', false)">Learn More</div>
+    </div>
+</div>
+  </section>
+
+  <!-- Commercial Ventures -->
+  <section id="commercial-ventures">
+	<div class="styled-section">
+    <h2>Commercial Ventures</h2>
+
+    <!-- Nim Ventures -->
+    <div>
+      <h3>Nim Ventures: A Strategic Partner in Innovation</h3>
+      <p>
+        Nim Ventures stands as a venture studio, transcending conventional investment to become a strategic partner. From ideation to early revenue stages, Nim Ventures fosters growth, aiming to achieve $1 million in ARR collectively. This venture is not merely an investment fund; it's a key player in shaping innovative ventures within our comprehensive framework.
+      </p>
+<div class="learn-more-btn" onclick="redirectToPage('pages/future-page.html', false)">Learn More</div>
+    </div>
+
+    <!-- Executxr -->
+    <div>
+      <h3>Executxr: Tools for Tangible XR Experiences</h3>
+      <p>        
+Executxr, born from hands-on experience working with brands in the Nim Framework, is a dedicated company crafted to cut through the buzz and get things done. Serving as your direct point of contact for execution, Executxr provides practical tools and solutions, making high-level XR strategies a reality. As we move from strategy to action, Executxr ensures a hands-on approach to bring your brand's immersive experiences to life.
+      </p>
+<div class="learn-more-btn" onclick="redirectToPage('pages/future-page.html', false)">Learn More</div>
+    </div>
+
+ 	<!-- The Natural Beauty Club -->
+    <div>
+      <h3>The Natural Beauty Club: Consciously Crafting Individual Well-Being</h3>
+      <p>
+        Adding a unique dimension, the Natural Beauty Club is an omnichannel beauty and personal care store that encourages individuals to find their natural beauty. Aligning with 	conscious consumer values, it offers products that make people shine not only individually but also contribute to a healthy planet without compromise.
+      </p>
+	<div class="learn-more-btn" onclick="redirectToPage('https://www.thenaturalbeautyclub.com', true)">Learn More</div>
+    </div>
+
+    <!-- Worlds Beyond Studios and Edorble -->
+    <div>
+      <h3>Worlds Beyond Studios and Edorble: Pioneering Collaborative Virtual Worlds</h3>
+      <p>
+        Worlds Beyond Studios pioneers collaborative virtual worlds powered by Edorble – our open-source framework. Edorble, freely available for personal and academic projects, funds continuous development through a commercial license. The grant system ensures mentorship, with industry veterans providing coaching to new talents.
+      </p>
+<div class="learn-more-btn" onclick="redirectToPage('https://edorble.com', true)">Learn More</div>
+    </div>
+
+</div>
+  </section>
+
+  <!-- Non-Profit Ventures -->
+  <section id="non-profit-ventures">
+<div class="styled-section">
+    <h2>Non-Profit Ventures</h2>
+
+    <!-- XR Valley -->
+    <div>
+      <h3>XR Valley: A Collaborative Hub for Impact</h3>
+      <p>XR Valley, a Belgian non-profit organization, is dedicated to positioning Belgium on the global radar as an important contributor to the XR industry. Together with our members and partners we’re building a strong XR ecosystem in Belgium to accelerate XR adoption benefiting the economy and society. We create opportunities for Industry, Policy Makers, Academics, and XR Solution Providers to connect, gain inspiration, and experience the transformative potential of XR technology in achieving diverse business or organizational goals. </p>
+<div class="learn-more-btn" onclick="redirectToPage('https://www.xrvalley.be', true)">Learn More</div>
+    </div>
+
+    <!-- Nim Non-Profit Ventures -->
+    <div>
+      <h3>Nim Non-Profit Ventures: Impacting 17 UN Sustainability Goals</h3>
+      <p>      
+Where Nim Ventures primarily measures success in economic gain, Nim Non-Profit Ventures prioritizes impact as its key metric. It represents a commitment to making a meaningful difference in the world.
+      </p>
+<div class="learn-more-btn" onclick="redirectToPage('pages/future-page.html', false)">Learn More</div>
+    </div>
+
+    <!-- O Ventures -->
+
+    <div>
+      <h3>O Ventures: Support for Inclusive Decision-Making</h3>
+      <p>
+        As a vessel providing support for groups, communities, and governments, O Ventures assists in implementing the O Framework. It encourages inclusive decision-making and fosters spaces for collaboration, driving positive change at various levels.
+      </p>
+<div class="learn-more-btn" onclick="redirectToPage('pages/future-page.html', false)">Learn More</div>
+    </div>
+
+    <!-- PTE Ventures -->
+    <div>
+      <h3>PTE Ventures: Fostering Symbiotic Relationships</h3>
+      <p>
+        A vessel supporting groups and communities in implementing the Parasite to Epiphyte Framework, PTE Ventures explores sustainable practices where humans coexist with the planet without causing harm. It represents a commitment to fostering a symbiotic relationship with Earth.
+      </p>
+<div class="learn-more-btn" onclick="redirectToPage('pages/future-page.html', false)">Learn More</div>
+    </div>
+</div>
+  </section>
+
+  <!-- Let's Connect-->
+  <section id="connect">
+<div class="styled-section">
+    <h2>Let's Connect !</h2>
+    <p>
+      If you share this vision for a transformative future or are curious about how our ventures can intersect with your aspirations, I invite you to connect. Whether you're interested in XR innovation, strategic investment, community collaboration, conscious consumerism, consultancy services, or the search for sustainability, let's explore the possibilities together. 
+    </p>
+    <div>
+	<ul>
+      <li><a href="https://www.linkedin.com/in/cederik-haverbeke-288a7931/" class="linkedin-button" target="_blank">Connect on LinkedIn</a></li>
+<li><a href="https://share-eu1.hsforms.com/1OmoWsLTNSfewk6tSxT0pHg2do1mn" class="linkedin-button" target="_blank">Drop me an email</a></li>
+<li>
+<!-- Calendly link widget begin -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/cederik/30m'});return false;">Schedule time with me</a>
+<!-- Calendly link widget end --></li>
+
+    </div>
+</div>
+  </section>
+
+</div>
+
+  <!-- Coming Soon Popup -->
+  <div class="overlay" id="comingSoonOverlay">
+    <div class="popup">
+      <h2>Coming Soon!</h2>
+      <p>Stay tuned for more information. Drop me an email in the meanwhile: cederik [at] cederik.com</p>
+      <button onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    function showPopup() {
+      document.getElementById('comingSoonOverlay').style.display = 'flex';
+    }
+
+    function closePopup() {
+      document.getElementById('comingSoonOverlay').style.display = 'none';
+    }
+
+function redirectToPage(url, pageExists) {
+  if (pageExists) {
+    window.open(url, '_blank');
+  } else {
+    showPopup();
+  }
+}
+
+ function toggleNav() {
+    var mobileNav = document.getElementById('mobile-nav');
+    var desktopNav = document.getElementById('desktop-nav');
+
+    if (window.innerWidth <= 768) {
+        // Mobile view
+        mobileNav.style.display = (mobileNav.style.display === 'none' || mobileNav.style.display === '') ? 'block' : 'none';
+        desktopNav.style.display = 'none'; // Hide desktop nav
+    } else {
+        // Desktop view
+        desktopNav.style.display = (desktopNav.style.display === 'none' || desktopNav.style.display === '') ? 'block' : 'none';
+        mobileNav.style.display = 'none'; // Hide mobile nav
+    }
+}
+
+// Add this event listener to your navigation links
+document.querySelectorAll('#mobile-nav a').forEach(link => {
+    link.addEventListener('click', function() {
+        toggleNav(); // Close the navigation menu when a link is clicked
+    });
+});
+
+  </script>
+</body>
+</html>
+
