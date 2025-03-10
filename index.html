@@ -4,16 +4,447 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Executxr Home</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #fafafa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            color: #333;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid #eee;
+            background-image: linear-gradient(to right, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%), url('https://static.hsappstatic.net/MeetingsEmbed/ex/transparent-pixel.png');
+            background-size: cover;
+        }
+        
+        .header-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #3a7bd5, #00d2ff);
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+            color: #222;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .header-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #3a7bd5, #00d2ff);
+        }
+
+        .header-subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #555;
+            font-weight: 400;
+        }
+        
+        .event-subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 1.5rem auto 0;
+            color: #3a7bd5;
+            font-weight: 500;
+            padding: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        /* Navigation Styles */
+        #desktop-nav {
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+        }
+
+        #desktop-nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #desktop-nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        #desktop-nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        #desktop-nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #3a7bd5;
+            transition: width 0.3s;
+        }
+
+        #desktop-nav ul li a:hover {
+            color: #3a7bd5;
+        }
+
+        #desktop-nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        /* Mobile Navigation */
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hamburger-bar {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        #mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 4rem 2rem;
+        }
+
+        #mobile-nav ul {
+            list-style: none;
+        }
+
+        #mobile-nav li {
+            margin: 1.5rem 0;
+        }
+
+        #mobile-nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        #mobile-nav a:hover {
+            color: #3a7bd5;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Content Sections */
+        .outer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        .styled-section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+            margin-bottom: 3rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #3a7bd5;
+        }
+
+        .styled-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Two column grid layout */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Feature lists */
+        .feature-list {
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon {
+            color: #3a7bd5;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+        }
+
+        .feature-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: #222;
+        }
+
+        .feature-text p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        h1, h2 {
+            color: #222;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        a {
+            color: #3a7bd5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #00d2ff;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(90deg, #3a7bd5, #00d2ff);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(58, 123, 213, 0.3);
+            color: white;
+        }
+
+        .linkedin-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #0077B5;
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            margin: 0.5rem 0;
+            transition: background-color 0.3s, transform 0.3s;
+            font-weight: 500;
+        }
+
+        .linkedin-button:before {
+            content: '\f08c';
+            font-family: 'Font Awesome 6 Free';
+            margin-right: 10px;
+        }
+
+        .linkedin-button:hover {
+            background-color: #005582;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Connect Section */
+        #connect ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        #connect li {
+            margin: 1rem 0;
+        }
+
+        /* Popup Styles */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .popup {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup h2 {
+            margin-bottom: 1rem;
+        }
+
+        .popup p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Meetings Container */
+        .meetings-iframe-container {
+            margin-top: 2rem;
+            width: 100%;
+            height: 650px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: block;
+            }
+
+            #desktop-nav {
+                display: none;
+            }
+
+            .header-title {
+                font-size: 1.8rem;
+            }
+
+            .header-subtitle {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .styled-section {
+                padding: 1.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+
+<!-- Header Section -->
+<header>
+    <div class="header-accent"></div>
+    <div class="header-content">
+        <h1 class="header-title">We help organizations improve their visitor programs and internal engagement by connecting both external audiences and staff to meaningful experiences through immersive technology.</h1>
+        <p class="header-subtitle">Through a simple monthly contract, we work alongside your team to find the right ROI strategy, create compelling experiences, coordinate creative partners, and can even lead the entire program if you want us to.</p>
+        <p class="event-subtitle"><i class="fas fa-calendar-check"></i> And if you need an extra pair of tech-savvy hands for your next event, we can handle everything from hardware to hospitality.</p>
+    </div>
+</header>
 
 <!-- Desktop Navigation -->
 <nav id="desktop-nav">
     <ul>
-        <li><a href="#virtual-worlds">Virtual Worlds</a></li>
-        <li><a href="#connect">Let's connect</a></li>
-        <!-- Add more sections as needed -->
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#services">Our Services</a></li>
+        <li><a href="#connect">Let's Connect</a></li>
     </ul>
 </nav>
 
@@ -22,112 +453,182 @@
     <div class="hamburger-bar"></div>
     <div class="hamburger-bar"></div>
     <div class="hamburger-bar"></div>
-  </div>
+</div>
 
-  <nav id="mobile-nav">
-	<div class="close-btn" onclick="toggleNav()">X</div>
+<nav id="mobile-nav">
+    <div class="close-btn" onclick="toggleNav()">X</div>
     <ul>
-      <li><a href="#virtual-worlds">Virtual Worlds</a></li>
-	<li><a href="#connect">Let's connect</a></li>
-      <!-- Add more sections as needed -->
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#services">Our Services</a></li>
+        <li><a href="#connect">Let's Connect</a></li>
     </ul>
-  </nav>
+</nav>
 
 <div class="outer-container" id="content">
-  <section>
-    <div class="styled-section">
-    <h1>Introduction</h1>
-
     <!-- Introduction -->
+    <section id="intro">
+        <div class="styled-section">
+            <h1>Our Mission</h1>
+            <p>Welcome! Our mission is to empower brands by leveraging the potential of Extended Reality (XR) and Artificial Intelligence (AI).</p>
+            <p>We specialize in facilitating highly personalized Experience Programs that engage both visitors and staff.</p>
+            <p>Our role is to help you build and access an ecosystem of studios and solution providers who create the content and supply the necessary hardware.</p>
+            <a href="#connect" class="btn">Let's connect <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
 
-    <p>Welcome! Our mission is to empower brands by leveraging the potential of Extended Reality (XR) and Artificial Intelligence (AI).</p>
-    <p>We specialize in facilitating highly personalized Experience Programs.</p>
-    <p>Our role is to help you build and access an ecosystem of studios and solution providers who create the content and supply the necessary hardware.</p>
-    <p>Our services include the sale, management, and execution of these Experience Programs, providing a comprehensive solution for your brand's needs.</p>
-    <a href="#connect">Let's connect</a>
-    </div>
-  </section>
+    <!-- Services Section -->
+    <section id="services">
+        <div class="styled-section">
+            <h2>Our Services</h2>
+            <p>We provide comprehensive solutions that combine experience programs with eventimential support, creating seamless immersive experiences for your organization.</p>
+            
+            <div class="services-grid">
+                <!-- Experience Programs -->
+                <div>
+                    <h3><i class="fas fa-vr-cardboard"></i> Experience Programs</h3>
+                    <p>Customized immersive experiences designed to engage both visitors and staff.</p>
+                    
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="feature-text">
+                                <h3>ROI Strategy</h3>
+                                <p>Develop measurable impact strategies for your immersive programs</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-users"></i></div>
+                            <div class="feature-text">
+                                <h3>Creative Partner Coordination</h3>
+                                <p>Access to our ecosystem of studios and content creators</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-tasks"></i></div>
+                            <div class="feature-text">
+                                <h3>Program Management</h3>
+                                <p>Full-service management of your experience programs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hardware Rental and Event Services -->
+                <div>
+                    <h3><i class="fas fa-laptop"></i> Hardware Rental & Event Services</h3>
+                    <p>Comprehensive event-based support to ensure flawless execution.</p>
+                    
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-box"></i></div>
+                            <div class="feature-text">
+                                <h3>Hardware Rental</h3>
+                                <p>Access to cutting-edge XR equipment for your events</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-tools"></i></div>
+                            <div class="feature-text">
+                                <h3>Technical Setup</h3>
+                                <p>Professional preparation and configuration of all hardware</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-concierge-bell"></i></div>
+                            <div class="feature-text">
+                                <h3>Hospitality Services</h3>
+                                <p>Comprehensive support during your event for guests and staff</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Virtual Showroom -->
-  <section id="virtual-worlds">
-<div class="styled-section">
-    <h2>Our Virtual Worlds</h2>   
-    <a href="https://framevr.io/okz-iez-kfa#">Enter Frame</a>
+    <!-- Let's Connect-->
+    <section id="connect">
+        <div class="styled-section">
+            <h2>Let's Connect!</h2>
+            <p>
+                If you share this vision for a transformative future or are curious about how our ventures can intersect with your aspirations, I invite you to connect. Whether you're interested in XR innovation, strategic investment, community collaboration, conscious consumerism, consultancy services, or the search for sustainability, let's explore the possibilities together.
+            </p>
+            <div>
+                <ul>
+                    <li><a href="https://www.linkedin.com/company/executxr/" class="linkedin-button" target="_blank">Connect on LinkedIn</a></li>
+                    <li><a href="https://share-eu1.hsforms.com/1YCXo9kUrQH25n9rr5opICQfaotk" class="btn" target="_blank">Fill in a Form <i class="fas fa-file-alt"></i></a></li>
+                </ul>
+
+                <!-- Start of Meetings Embed Script -->
+                <div class="meetings-iframe-container" data-src="https://meetings-eu1.hubspot.com/linus-artois/introduction-meeting-on-website?embed=true"></div>
+                <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+                <!-- End of Meetings Embed Script -->
+            </div>
+        </div>
+    </section>
 </div>
-  </section>
 
-  <!-- Let's Connect-->
-  <section id="connect">
-<div class="styled-section">
-    <h2>Let's Connect !</h2>
-    <p>
-      If you share this vision for a transformative future or are curious about how our ventures can intersect with your aspirations, I invite you to connect. Whether you're interested in XR innovation, strategic investment, community collaboration, conscious consumerism, consultancy services, or the search for sustainability, let's explore the possibilities together. 
-    </p>
-    <div>
-	<ul>
-      <li><a href="https://www.linkedin.com/company/executxr/" class="linkedin-button" target="_blank">Connect on LinkedIn</a></li>
-<li><a href="https://share-eu1.hsforms.com/1YCXo9kUrQH25n9rr5opICQfaotk" class="linkedin-button" target="_blank">Fill in a form</a></li>
-
-<!-- Start of Meetings Embed Script -->
-    <div class="meetings-iframe-container" data-src="https://meetings-eu1.hubspot.com/linus-artois/introduction-meeting-on-website?embed=true"></div>
-    <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
-  <!-- End of Meetings Embed Script -->
-
-    </div>
-</div>
-  </section>
-
-</div>
-
-  <!-- Coming Soon Popup -->
-  <div class="overlay" id="comingSoonOverlay">
+<!-- Coming Soon Popup -->
+<div class="overlay" id="comingSoonOverlay">
     <div class="popup">
-      <h2>Coming Soon!</h2>
-      <p>Stay tuned for more information. Drop me an email in the meanwhile: linus [at] executxr.com</p>
-      <button onclick="closePopup()">Close</button>
+        <h2>Coming Soon!</h2>
+        <p>Stay tuned for more information. Drop me an email in the meanwhile: linus [at] executxr.com</p>
+        <button class="btn" onclick="closePopup()">Close</button>
     </div>
-  </div>
+</div>
 
-  <script>
+<script>
     function showPopup() {
-      document.getElementById('comingSoonOverlay').style.display = 'flex';
+        document.getElementById('comingSoonOverlay').style.display = 'flex';
     }
 
     function closePopup() {
-      document.getElementById('comingSoonOverlay').style.display = 'none';
+        document.getElementById('comingSoonOverlay').style.display = 'none';
     }
 
-function redirectToPage(url, pageExists) {
-  if (pageExists) {
-    window.open(url, '_blank');
-  } else {
-    showPopup();
-  }
-}
-
- function toggleNav() {
-    var mobileNav = document.getElementById('mobile-nav');
-    var desktopNav = document.getElementById('desktop-nav');
-
-    if (window.innerWidth <= 768) {
-        // Mobile view
-        mobileNav.style.display = (mobileNav.style.display === 'none' || mobileNav.style.display === '') ? 'block' : 'none';
-        desktopNav.style.display = 'none'; // Hide desktop nav
-    } else {
-        // Desktop view
-        desktopNav.style.display = (desktopNav.style.display === 'none' || desktopNav.style.display === '') ? 'block' : 'none';
-        mobileNav.style.display = 'none'; // Hide mobile nav
+    function redirectToPage(url, pageExists) {
+        if (pageExists) {
+            window.open(url, '_blank');
+        } else {
+            showPopup();
+        }
     }
-}
 
-// Add this event listener to your navigation links
-document.querySelectorAll('#mobile-nav a').forEach(link => {
-    link.addEventListener('click', function() {
-        toggleNav(); // Close the navigation menu when a link is clicked
+    function toggleNav() {
+        var mobileNav = document.getElementById('mobile-nav');
+        var desktopNav = document.getElementById('desktop-nav');
+
+        if (window.innerWidth <= 768) {
+            // Mobile view
+            mobileNav.style.display = (mobileNav.style.display === 'none' || mobileNav.style.display === '') ? 'block' : 'none';
+            desktopNav.style.display = 'none'; // Hide desktop nav
+        } else {
+            // Desktop view
+            desktopNav.style.display = (desktopNav.style.display === 'none' || desktopNav.style.display === '') ? 'block' : 'none';
+            mobileNav.style.display = 'none'; // Hide mobile nav
+        }
+    }
+
+    // Add this event listener to your navigation links
+    document.querySelectorAll('#mobile-nav a').forEach(link => {
+        link.addEventListener('click', function() {
+            toggleNav(); // Close the navigation menu when a link is clicked
+        });
     });
-});
 
-  </script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
 </body>
 </html>
-
