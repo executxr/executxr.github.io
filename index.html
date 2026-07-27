@@ -1,635 +1,1068 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- pipeline check: 2026-07-27 -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Executxr Home</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Executxr — close the gap between your story and your audience</title>
+<meta name="description" content="Executxr designs experience programmes that close the engagement gap between a dense, valuable story — a collection, research, policy, a corporate narrative — and the audience it needs to reach. Measured against right, returning and referring visitors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {"@type":"Organization","@id":"https://executxr.com/#org","name":"Executxr","url":"https://executxr.com","email":"sam@executxr.com","areaServed":["BE","NL","FR","EU"],"availableLanguage":["en","nl","fr"],"description":"Experience programme consultancy. We close the gap between a dense, valuable story and the audience it needs to reach.","knowsAbout":["visitor experience","audience engagement","experience programme design","science communication","heritage interpretation","immersive experience","experience measurement"]},
+    {"@type":"Service","name":"Experience programme discovery","provider":{"@id":"https://executxr.com/#org"},"serviceType":"Experience programme consultancy","description":"A short discovery: three to five interviews with your own people, a programme document within two weeks, a baseline measurement, and an explicit go or wait recommendation.","audience":[{"@type":"Audience","audienceType":"Museums and heritage organisations"},{"@type":"Audience","audienceType":"Research institutions and science communicators"},{"@type":"Audience","audienceType":"Corporate innovation and sustainability teams"}]},
+    {"@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"Why do visitors walk past a collection we invested in?","acceptedAnswer":{"@type":"Answer","text":"Because the meaning lives in the case, not in the visitor's head. An experience programme decides which single meaning has to land, in what order, and at which moment of the visit — then measures whether it did."}},
+      {"@type":"Question","name":"How do you communicate complex research without distorting it?","acceptedAnswer":{"@type":"Answer","text":"We interview the researchers themselves, keep the methodology visible, and take every simplification back to the person responsible for the content before it becomes final."}},
+      {"@type":"Question","name":"How do we justify an experience budget internally?","acceptedAnswer":{"@type":"Answer","text":"By building the case on what has to land with which audience, at what cost per contact moment, measured against right, returning and referring visitors."}},
+      {"@type":"Question","name":"How does Executxr measure success?","acceptedAnswer":{"@type":"Answer","text":"With the 3R frame — the right visitor, the returning visitor, the referring visitor — alongside cost per contact moment and occupancy."}}
+    ]}
+  ]
+}
+</script>
+<style>
+  :root {
+    --ink: #1A1E1C;
+    --ink-deep: #131614;
+    --paper: #F0EDE6;
+    --surface-dark: #212721;
+    --border-dark: #333A34;
+    --border-dark-warm: #4A5449;
+    --terracotta: #C25B3F;
+    --terracotta-deep: #A8482F;
+    --terracotta-light: #DD8A6C;
+    --sage: #4A5A52;
+    --text-on-dark: #c3c4bd;
+    --muted-on-dark: #a9aca2;
+    --muted-on-light: #6a6759;
+    --hairline-light: #dad6cb;
+    --hairline-light-2: #bab4a6;
+    --placeholder-stripe: #e5e1d8;
+    --grid-line-dark: #242a26;
+    --body-text: rgba(26,30,28,0.72);
+    --divider: rgba(26,30,28,0.18);
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Public Sans', Helvetica, Arial, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
 
-        body {
-            background-color: #fafafa;
-            color: #333;
-            line-height: 1.6;
-        }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); }
+  body { font-family: var(--font-body); color: var(--ink); -webkit-font-smoothing: antialiased; text-wrap: pretty; line-height: 1.5; }
+  h1, h2, h3, h4 { text-wrap: balance; }
+  a { color: var(--sage); text-decoration: none; transition: color .18s ease, background-color .18s ease, border-color .18s ease; }
+  a:hover { color: var(--ink); }
+  :focus-visible { outline: 3px solid var(--terracotta); outline-offset: 3px; }
+  ::selection { background: var(--terracotta); color: var(--paper); }
+  button { font-family: inherit; }
 
-        /* Header Styles */
-        header {
-            background-color: white;
-            color: #333;
-            padding: 5rem 0;
-            text-align: center;
-            position: relative;
-            border-bottom: 1px solid #eee;
-            background-image: linear-gradient(to right, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%), url('https://static.hsappstatic.net/MeetingsEmbed/ex/transparent-pixel.png');
-            background-size: cover;
-        }
-        
-        .header-accent {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #3a7bd5, #00d2ff);
-        }
+  @keyframes beamCross { from { transform: scaleX(0); opacity: 0 } to { transform: scaleX(1); opacity: 1 } }
+  @keyframes beamGlow { from { opacity: 0 } to { opacity: 1 } }
+  @media (prefers-reduced-motion: reduce) {
+    [data-beam], [data-reveal] { animation: none !important; transition: none !important; transform: none !important; opacity: 1 !important; }
+  }
 
-        .header-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
+  /* Skip link */
+  .skip-link { position: absolute; left: -9999px; top: 8px; background: var(--terracotta); color: var(--paper); padding: 12px 18px; font-size: 15px; font-weight: 600; z-index: 80; }
+  .skip-link:focus { left: 16px; }
 
-        .header-title {
-            font-size: 2.4rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.3;
-            color: #222;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .header-title:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #3a7bd5, #00d2ff);
-        }
+  /* Layout helpers */
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 56px; }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 40px; height: 78px; }
+  .split-header { display: grid; grid-template-columns: 200px 1fr; gap: 56px; }
+  .multi-grid { display: grid; gap: 56px; }
+  .multi-grid--2 { grid-template-columns: repeat(2, 1fr); }
+  .multi-grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .section { padding: 130px 0; }
+  .section--tight-top { padding-top: 0; }
 
-        .header-subtitle {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            color: #555;
-            font-weight: 400;
-        }
-        
-        .event-subtitle {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 1.5rem auto 0;
-            color: #3a7bd5;
-            font-weight: 500;
-            padding: 1rem;
-            border-top: 1px solid #eee;
-        }
+  /* Header */
+  .site-header { position: sticky; top: 0; z-index: 40; background: var(--ink); color: var(--paper); }
+  .wordmark { color: var(--paper); font-family: var(--font-display); font-size: 27px; font-weight: 600; letter-spacing: -0.015em; }
+  .nav { display: flex; gap: 32px; align-items: center; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .nav a { color: var(--muted-on-dark); }
+  .nav a:hover, .nav a:focus-visible { color: var(--paper); }
+  .header-right { display: flex; align-items: center; gap: 16px; }
+  .lang-switch { display: flex; border: 1px solid var(--border-dark-warm); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; }
+  .lang-btn { width: 46px; background: transparent; border: 0; border-left: 1px solid var(--border-dark-warm); color: var(--paper); font: inherit; letter-spacing: inherit; padding: 11px 0; cursor: pointer; position: relative; }
+  .lang-btn:first-child { border-left: 0; }
+  .lang-underline { position: absolute; left: 8px; right: 8px; bottom: 4px; height: 2px; background: var(--terracotta); opacity: 0; }
+  .lang-btn[aria-pressed="true"] .lang-underline { opacity: 1; }
+  .lang-switch--footer .lang-btn { width: 42px; color: var(--muted-on-dark); padding: 9px 0; }
+  .lang-switch--footer .lang-btn[aria-pressed="true"] { color: var(--paper); }
+  .nav-cta { background: var(--terracotta); color: var(--paper); padding: 14px 22px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+  .nav-cta:hover { background: var(--terracotta-deep); color: var(--paper); }
 
-        /* Navigation Styles */
-        #desktop-nav {
-            background-color: white;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            padding: 1rem 0;
-        }
+  /* Hero */
+  .section--hero { background: var(--ink); color: var(--paper); padding: 150px 0 0; }
+  .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terracotta-light); margin: 0 0 48px; }
+  .hero-h1 { font-family: var(--font-display); font-size: 86px; line-height: 1.03; letter-spacing: -0.025em; font-weight: 600; margin: 0; max-width: 19ch; }
+  .hero-sub { font-size: 22px; line-height: 1.5; color: var(--text-on-dark); max-width: 52ch; margin: 42px 0 50px; }
+  .hero-ctas { display: flex; gap: 32px; align-items: center; margin-bottom: 110px; flex-wrap: wrap; }
+  .cta-primary { background: var(--terracotta); color: var(--paper); padding: 19px 32px; font-size: 16px; font-weight: 600; }
+  .cta-primary:hover { background: var(--terracotta-deep); color: var(--paper); }
+  .cta-text { color: var(--paper); font-size: 16px; border-bottom: 1px solid var(--terracotta); padding-bottom: 3px; }
+  .cta-text:hover { color: var(--terracotta); }
 
-        #desktop-nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+  /* Gap Beam (hero) */
+  .beam { position: relative; height: 210px; }
+  .beam__base { position: absolute; inset: 0; background: linear-gradient(to right, var(--ink) 0%, #1f2421 46%, #252b27 50%, var(--ink) 100%); }
+  .beam__glow { position: absolute; left: 50%; top: 0; bottom: 0; right: 0; background: linear-gradient(to right, rgba(194,91,63,0.42) 0%, rgba(194,91,63,0.16) 38%, rgba(194,91,63,0) 100%); animation: beamGlow 1.6s ease-out .5s both; }
+  .beam__line { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--terracotta); box-shadow: 0 0 42px 10px rgba(194,91,63,0.34); }
+  .beam__rays { position: absolute; left: 50%; top: 22%; bottom: 22%; right: 8%; display: grid; gap: 14px; transform-origin: left center; animation: beamCross 1.5s cubic-bezier(.16,.84,.3,1) .35s both; }
+  .beam__rays div { height: 2px; }
+  .beam__rays div:nth-child(1) { background: linear-gradient(to right, rgba(194,91,63,0.85), rgba(194,91,63,0)); }
+  .beam__rays div:nth-child(2) { background: linear-gradient(to right, rgba(194,91,63,0.6), rgba(194,91,63,0)); }
+  .beam__rays div:nth-child(3) { background: linear-gradient(to right, rgba(194,91,63,0.85), rgba(194,91,63,0)); }
+  .beam__rays div:nth-child(4) { background: linear-gradient(to right, rgba(194,91,63,0.45), rgba(194,91,63,0)); }
+  .beam__rays div:nth-child(5) { background: linear-gradient(to right, rgba(194,91,63,0.7), rgba(194,91,63,0)); }
+  .beam__label { position: absolute; bottom: 20px; margin: 0; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+  .beam__label--left { left: 56px; color: var(--muted-on-dark); }
+  .beam__label--right { right: 56px; color: var(--terracotta-light); }
 
-        #desktop-nav ul li {
-            margin: 0 1.5rem;
-        }
+  /* Stories */
+  .section--stories { padding: 130px 0 0; }
+  .stories-intro { padding-bottom: 64px; }
+  .stories-h2 { font-family: var(--font-display); font-size: 46px; line-height: 1.08; letter-spacing: -0.02em; font-weight: 600; margin: 0 0 20px; max-width: 24ch; }
+  .stories-sub { font-size: 19px; line-height: 1.6; color: var(--body-text); max-width: 58ch; margin: 0; }
+  .stories-list { padding-bottom: 40px; display: grid; gap: 44px; }
+  .story { display: grid; grid-template-columns: 1fr 1.15fr; gap: 64px; align-items: start; border-top: 1px solid var(--divider); padding-top: 40px; }
+  .story--reverse { grid-template-columns: 1.15fr 1fr; }
+  .story__figure { margin: 0; aspect-ratio: 16/10; background: var(--ink); position: relative; overflow: hidden; }
+  .story__figure-grid { position: absolute; inset: 0; background-image: linear-gradient(to right, var(--grid-line-dark) 1px, transparent 1px); background-size: 42px 42px; }
+  .story__figure-glow { position: absolute; left: 42%; top: 0; bottom: 0; right: 0; background: linear-gradient(to right, rgba(194,91,63,0.38), rgba(194,91,63,0)); }
+  .story__figure-line { position: absolute; left: 42%; top: 0; bottom: 0; width: 2px; background: var(--terracotta); box-shadow: 0 0 32px 8px rgba(194,91,63,0.3); }
+  .story__figure-rays { position: absolute; left: 42%; top: 26%; bottom: 26%; right: 10%; display: grid; gap: 11px; }
+  .story__figure-rays div { height: 2px; }
+  .story__figure-rays div:nth-child(1) { background: linear-gradient(to right, rgba(221,138,108,0.9), rgba(221,138,108,0)); }
+  .story__figure-rays div:nth-child(2) { background: linear-gradient(to right, rgba(221,138,108,0.55), rgba(221,138,108,0)); }
+  .story__figure-rays div:nth-child(3) { background: linear-gradient(to right, rgba(221,138,108,0.85), rgba(221,138,108,0)); }
+  .story__figure-rays div:nth-child(4) { background: linear-gradient(to right, rgba(221,138,108,0.45), rgba(221,138,108,0)); }
+  .story__caption { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; gap: 16px; padding: 18px 20px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .story__caption span:first-child { color: var(--muted-on-dark); }
+  .story__caption span:last-child { color: var(--terracotta-light); text-align: right; }
+  .story-h3 { font-family: var(--font-display); font-size: 33px; line-height: 1.15; letter-spacing: -0.02em; font-weight: 600; margin: 0 0 20px; max-width: 26ch; }
+  .story__lead { font-size: 18px; line-height: 1.65; color: var(--body-text); max-width: 52ch; margin: 0 0 30px; }
+  .proof-toggle { background: transparent; border: 0; border-bottom: 1px solid var(--terracotta); color: var(--ink); font-family: var(--font-body); font-size: 16px; font-weight: 600; padding: 0 0 4px; cursor: pointer; }
+  .proof-panel { margin-top: 34px; }
+  .proof-panel[hidden] { display: none; }
+  .proof-divider { display: flex; align-items: center; margin-bottom: 26px; }
+  .proof-divider__bar { height: 3px; width: 130px; background: linear-gradient(to right, var(--ink), var(--terracotta)); }
+  .proof-divider__tick { width: 2px; height: 14px; background: var(--terracotta); }
+  .proof-list { display: grid; gap: 16px; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; border-left: 2px solid var(--terracotta); padding-left: 24px; margin: 0; }
+  .proof-list p { margin: 0; color: var(--ink); }
+  .proof-list p.is-muted { color: var(--muted-on-light); }
 
-        #desktop-nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-            padding: 0.5rem 0;
-            position: relative;
-        }
+  /* Section header (label + heading) */
+  .section-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-on-light); margin: 0; padding-top: 14px; }
+  .section-label--dark { color: var(--terracotta-light); }
+  .section-h2 { font-family: var(--font-display); font-size: 46px; line-height: 1.08; letter-spacing: -0.02em; font-weight: 600; margin: 0; max-width: 22ch; }
+  .section-sub { font-size: 19px; line-height: 1.6; margin: 24px 0 0; max-width: 56ch; }
+  .section-sub--dark { color: var(--text-on-dark); }
+  .section-sub--light { color: var(--body-text); }
 
-        #desktop-nav ul li a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #3a7bd5;
-            transition: width 0.3s;
-        }
+  /* Method */
+  .section--method { padding: 110px 56px 120px; }
+  .section--method .split-header { margin-bottom: 64px; }
+  .method-col { border-top: 2px solid var(--sage); padding-top: 24px; }
+  .method-col__label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sage); margin: 0 0 16px; }
+  .method-col__h3 { font-family: var(--font-display); font-size: 26px; line-height: 1.18; font-weight: 600; margin: 0 0 14px; }
+  .method-col__p { font-size: 17px; line-height: 1.6; color: var(--body-text); margin: 0; }
 
-        #desktop-nav ul li a:hover {
-            color: #3a7bd5;
-        }
+  /* People */
+  .section--people { padding: 0 56px 120px; }
+  .section--people .split-header { margin-bottom: 56px; }
+  .people-cards { margin-bottom: 72px; }
+  .person-card { display: grid; grid-template-columns: 180px 1fr; gap: 32px; align-items: start; }
+  .person-card__portrait { aspect-ratio: 4/5; background: repeating-linear-gradient(135deg, var(--placeholder-stripe) 0 12px, var(--paper) 12px 24px); display: flex; align-items: flex-end; padding: 14px; }
+  .person-card__portrait span { font-family: var(--font-mono); font-size: 10px; line-height: 1.5; color: var(--muted-on-light); }
+  .person-card__name { font-family: var(--font-display); font-size: 26px; line-height: 1.15; font-weight: 600; margin: 0 0 6px; }
+  .person-card__role { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); margin: 0 0 18px; }
+  .person-card__bio { font-size: 17px; line-height: 1.6; color: var(--body-text); margin: 0 0 18px; }
+  .person-link { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--sage); border-bottom: 1px solid var(--hairline-light-2); padding-bottom: 2px; }
+  .person-link:hover { color: var(--ink); border-color: var(--terracotta-deep); }
+  .team-block { border-top: 1px solid var(--divider); padding-top: 48px; }
+  .team-h3 { font-family: var(--font-display); font-size: 34px; line-height: 1.12; letter-spacing: -0.02em; font-weight: 600; margin: 0 0 20px; max-width: 26ch; }
+  .team-p { font-size: 18px; line-height: 1.6; color: var(--body-text); max-width: 54ch; margin: 0 0 40px; }
+  .role-grid { gap: 1px; background: var(--hairline-light); border: 1px solid var(--hairline-light); }
+  .role-card { background: var(--paper); padding: 28px 30px; }
+  .role-card__h4 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terracotta-deep); font-weight: 500; margin: 0 0 12px; }
+  .role-card__p { font-size: 17px; line-height: 1.55; color: rgba(26,30,28,0.78); margin: 0; }
+  .team-close { font-size: 18px; line-height: 1.6; color: var(--body-text); max-width: 54ch; margin: 32px 0 0; }
+  .people-note { font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--muted-on-light); margin: 28px 0 0; }
 
-        #desktop-nav ul li a:hover:after {
-            width: 100%;
-        }
+  /* Measure */
+  .section--measure { background: var(--ink); color: var(--paper); padding: 130px 0; }
+  .section--measure .split-header { margin-bottom: 72px; }
+  .measure-grid { gap: 1px; background: var(--border-dark); border: 1px solid var(--border-dark); }
+  .measure-card { background: var(--surface-dark); padding: 44px 36px; }
+  .measure-card__r { font-family: var(--font-display); font-size: 58px; line-height: 1; font-weight: 600; color: var(--terracotta); margin: 0 0 22px; }
+  .measure-card__r span { font-size: 30px; }
+  .measure-card__h3 { font-family: var(--font-display); font-size: 26px; line-height: 1.18; font-weight: 600; margin: 0 0 14px; }
+  .measure-card__p { font-size: 17px; line-height: 1.6; color: var(--text-on-dark); margin: 0 0 20px; }
+  .measure-card__metric { font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--muted-on-dark); margin: 0; border-top: 1px solid var(--border-dark); padding-top: 16px; }
 
-        /* Mobile Navigation */
-        .hamburger-menu {
-            display: none;
-            cursor: pointer;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1001;
-            background-color: white;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+  /* Start */
+  .section--start { padding: 130px 0; }
+  .start-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .start-h2 { font-family: var(--font-display); font-size: 52px; line-height: 1.05; letter-spacing: -0.022em; font-weight: 600; margin: 0 0 24px; max-width: 20ch; }
+  .start-sub { font-size: 20px; line-height: 1.55; color: var(--body-text); max-width: 48ch; margin: 0 0 40px; }
+  .start-steps { list-style: none; margin: 0 0 44px; padding: 0; display: grid; gap: 1px; background: var(--hairline-light); border: 1px solid var(--hairline-light); }
+  .start-steps li { background: var(--paper); padding: 22px 26px; display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: baseline; }
+  .start-steps__index { font-family: var(--font-mono); font-size: 12px; color: var(--sage); }
+  .start-steps__text { font-size: 17px; line-height: 1.5; }
+  .start__right { display: grid; gap: 24px; }
+  .visit-card { background: var(--terracotta-deep); color: var(--paper); padding: 44px; }
+  .visit-card__label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--paper); margin: 0 0 20px; }
+  .visit-card__h3 { font-family: var(--font-display); font-size: 32px; line-height: 1.12; font-weight: 600; margin: 0 0 14px; }
+  .visit-card__p { font-size: 17px; line-height: 1.6; margin: 0 0 28px; }
+  .visit-card__cta { display: block; background: var(--ink); color: var(--paper); padding: 18px; text-align: center; font-size: 16px; font-weight: 600; }
+  .visit-card__cta:hover { background: var(--paper); color: var(--ink); }
+  .visit-card__note { font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--paper); margin: 22px 0 0; }
+  .meet-card, .form-card { background: var(--ink); color: var(--paper); padding: 44px; }
+  .meet-card__h3, .form-card__h3 { font-family: var(--font-display); font-size: 30px; line-height: 1.15; font-weight: 600; margin: 0 0 12px; }
+  .meet-card__p, .form-card__sub { font-size: 16px; line-height: 1.6; color: var(--text-on-dark); margin: 0 0 28px; }
+  .form-card__sub { margin-bottom: 32px; }
+  .meet-card__slot { border: 1px dashed var(--border-dark-warm); background: var(--surface-dark); min-height: 184px; display: flex; align-items: center; justify-content: center; padding: 28px; margin-bottom: 16px; }
+  .meet-card__slot span { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--muted-on-dark); text-align: center; }
+  .meet-card__note { font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--muted-on-dark); margin: 0; }
+  .form-grid { display: grid; gap: 22px; }
+  .form-field { display: grid; gap: 8px; }
+  .form-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-on-dark); }
+  .form-input, .form-textarea { background: var(--surface-dark); border: 1px solid var(--border-dark-warm); color: var(--paper); font-family: var(--font-body); font-size: 16px; padding: 14px 16px; }
+  .form-textarea { resize: vertical; }
+  .form-submit { background: var(--terracotta); border: 0; color: var(--paper); font-family: var(--font-body); font-size: 16px; font-weight: 600; padding: 18px; cursor: pointer; }
+  .form-submit:hover { background: var(--terracotta-deep); }
+  .form-status { margin: 0; font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--muted-on-dark); min-height: 1.7em; }
+  .form-footer { margin: 28px 0 0; border-top: 1px solid var(--border-dark); padding-top: 22px; font-family: var(--font-mono); font-size: 12px; line-height: 1.8; color: var(--muted-on-dark); }
+  .form-footer a { color: var(--muted-on-dark); }
+  .form-footer a:hover { color: var(--paper); }
 
-        .hamburger-bar {
-            width: 25px;
-            height: 3px;
-            background-color: #333;
-            margin: 5px 0;
-            transition: 0.3s;
-        }
+  /* Tech */
+  .section--tech { background: var(--ink-deep); color: var(--paper); padding: 130px 0; }
+  .tech-h2 { font-family: var(--font-display); font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 600; margin: 0 0 26px; max-width: 24ch; }
+  .tech-p { font-size: 19px; line-height: 1.6; color: var(--text-on-dark); max-width: 56ch; margin: 0 0 44px; }
+  .tech-cols { padding-top: 40px; border-top: 1px solid var(--border-dark); }
+  .tech-col__h3 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-on-dark); font-weight: 400; margin: 0 0 14px; }
+  .tech-col__p { font-size: 17px; line-height: 1.6; color: var(--text-on-dark); margin: 0; }
 
-        #mobile-nav {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 80%;
-            max-width: 300px;
-            height: 100%;
-            background-color: white;
-            box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            padding: 4rem 2rem;
-        }
+  /* Footer */
+  .site-footer { background: var(--ink); color: var(--paper); padding: 76px 0 60px; }
+  .site-footer .bar { height: auto; align-items: flex-end; }
+  .footer-wordmark { font-family: var(--font-display); font-size: 36px; font-weight: 600; letter-spacing: -0.015em; margin: 0; }
+  .footer-links { display: flex; gap: 56px; align-items: flex-end; font-family: var(--font-mono); font-size: 13px; color: var(--muted-on-dark); flex-wrap: wrap; }
+  .footer-links__group { display: grid; gap: 10px; }
+  .footer-links a { color: var(--muted-on-dark); }
+  .footer-links a:hover, .footer-links a:focus-visible { color: var(--paper); }
 
-        #mobile-nav ul {
-            list-style: none;
-        }
+  /* Reveal-on-scroll base state (JS toggles to visible) */
+  [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.16,.84,.3,1), transform .7s cubic-bezier(.16,.84,.3,1); }
+  [data-reveal].is-visible { opacity: 1; transform: none; }
 
-        #mobile-nav li {
-            margin: 1.5rem 0;
-        }
-
-        #mobile-nav a {
-            text-decoration: none;
-            color: #333;
-            font-size: 1.2rem;
-            font-weight: 500;
-            display: block;
-            padding: 0.5rem 0;
-            transition: color 0.3s;
-        }
-
-        #mobile-nav a:hover {
-            color: #3a7bd5;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #333;
-        }
-
-        /* Content Sections */
-        .outer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        section {
-            padding: 4rem 0;
-        }
-
-        .styled-section {
-            background-color: white;
-            border-radius: 12px;
-            padding: 3rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
-            margin-bottom: 3rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid #3a7bd5;
-        }
-
-        .styled-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Two column grid layout */
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        /* Feature lists */
-        .feature-list {
-            margin: 1.5rem 0;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .feature-icon {
-            color: #3a7bd5;
-            margin-right: 1rem;
-            font-size: 1.2rem;
-            margin-top: 0.2rem;
-        }
-
-        .feature-text h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-            color: #222;
-        }
-
-        .feature-text p {
-            font-size: 1rem;
-            color: #666;
-        }
-
-        h1, h2 {
-            color: #222;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        h1 {
-            font-size: 2.2rem;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-        }
-
-        p {
-            margin-bottom: 1.2rem;
-            font-size: 1.1rem;
-            color: #555;
-        }
-
-        a {
-            color: #3a7bd5;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: #00d2ff;
-        }
-
-        /* Button Styles */
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            background: linear-gradient(90deg, #3a7bd5, #00d2ff);
-            color: white;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(58, 123, 213, 0.3);
-            color: white;
-        }
-
-        .linkedin-button {
-            display: inline-flex;
-            align-items: center;
-            background-color: #0077B5;
-            color: white;
-            padding: 0.8rem 1.8rem;
-            border-radius: 30px;
-            margin: 0.5rem 0;
-            transition: background-color 0.3s, transform 0.3s;
-            font-weight: 500;
-        }
-
-        .linkedin-button:before {
-            content: '\f08c';
-            font-family: 'Font Awesome 6 Free';
-            margin-right: 10px;
-        }
-
-        .linkedin-button:hover {
-            background-color: #005582;
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* Connect Section */
-        #connect ul {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
-        #connect li {
-            margin: 1rem 0;
-        }
-
-        /* Popup Styles */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .popup {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 12px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .popup h2 {
-            margin-bottom: 1rem;
-        }
-
-        .popup p {
-            margin-bottom: 1.5rem;
-        }
-
-        /* Meetings Container */
-        .meetings-iframe-container {
-            margin-top: 2rem;
-            width: 100%;
-            height: 650px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hamburger-menu {
-                display: block;
-            }
-
-            #desktop-nav {
-                display: none;
-            }
-
-            .header-title {
-                font-size: 1.8rem;
-            }
-
-            .header-subtitle {
-                font-size: 1.1rem;
-            }
-
-            section {
-                padding: 3rem 0;
-            }
-
-            .styled-section {
-                padding: 1.5rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .container { padding-left: 32px; padding-right: 32px; }
+    .bar { height: auto; flex-wrap: wrap; padding: 14px 0 16px; gap: 18px; }
+    .bar a, .bar button { white-space: nowrap; }
+    .nav { flex-wrap: wrap; row-gap: 12px; }
+    .person-card { grid-template-columns: 130px 1fr; gap: 24px; }
+    .split-header, .story, .start-grid { grid-template-columns: 1fr !important; gap: 36px; }
+    .multi-grid { grid-template-columns: 1fr !important; gap: 40px; }
+  }
+  @media (max-width: 760px) {
+    .container { padding-left: 22px; padding-right: 22px; }
+    .split-header, .story, .multi-grid, .start-grid { gap: 30px; }
+    .person-card { grid-template-columns: 104px 1fr; gap: 20px; }
+    .bar { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .section, .section--hero, .section--stories, .section--method, .section--people, .section--measure, .section--start, .section--tech { padding-top: 64px !important; padding-bottom: 64px !important; }
+    .hero-h1 { font-size: 38px; }
+    .section-h2, .stories-h2 { font-size: 29px; }
+    .story-h3, .method-col__h3, .person-card__name, .measure-card__h3, .meet-card__h3, .form-card__h3 { font-size: 24px; }
+    .container p, .container span, .container li, .container a { max-width: none; }
+  }
+</style>
 </head>
 <body>
 
-<!-- Header Section -->
-<header>
-    <div class="header-accent"></div>
-    <div class="header-content">
-        <h1 class="header-title">We help organizations improve their visitor programs and internal engagement by connecting both external audiences and staff to meaningful experiences through immersive technology.</h1>
-        <p class="header-subtitle">Through a simple monthly contract, we work alongside your team to find the right ROI strategy, create compelling experiences, coordinate creative partners, and can even lead the entire program if you want us to.</p>
-        <p class="event-subtitle"><i class="fas fa-calendar-check"></i> And if you need an extra pair of tech-savvy hands for your next event, we can handle everything from hardware to hospitality.</p>
+<a href="#main" class="skip-link" data-i18n="skip">Skip to content</a>
+
+<header class="site-header">
+  <div class="container bar">
+    <a href="#top" class="wordmark">executxr</a>
+    <nav class="nav" aria-label="Main navigation" data-i18n-label="navLabel">
+      <a href="#stories" data-i18n="navStories">Three stories</a>
+      <a href="#method" data-i18n="navMethod">How we work</a>
+      <a href="#people" data-i18n="navPeople">Who you get</a>
+      <a href="#measure" data-i18n="navMeasure">How we measure</a>
+      <a href="#start" data-i18n="navStart">Start</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switch" role="group" aria-label="Language" data-i18n-label="langLabel">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN<span class="lang-underline"></span></button>
+        <button type="button" class="lang-btn" data-lang="nl" aria-pressed="false">NL<span class="lang-underline"></span></button>
+        <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false">FR<span class="lang-underline"></span></button>
+      </div>
+      <a href="#start" class="nav-cta" data-i18n="navCta">Talk to us</a>
     </div>
+  </div>
 </header>
 
-<!-- Desktop Navigation -->
-<nav id="desktop-nav">
-    <ul>
-        <li><a href="#intro">Introduction</a></li>
-        <li><a href="#services">Our Services</a></li>
-        <li><a href="#connect">Let's Connect</a></li>
-    </ul>
-</nav>
+<main id="main">
 
-<!-- Hamburger Menu for Mobile -->
-<div class="hamburger-menu" onclick="toggleNav()">
-    <div class="hamburger-bar"></div>
-    <div class="hamburger-bar"></div>
-    <div class="hamburger-bar"></div>
-</div>
-
-<nav id="mobile-nav">
-    <div class="close-btn" onclick="toggleNav()">X</div>
-    <ul>
-        <li><a href="#intro">Introduction</a></li>
-        <li><a href="#services">Our Services</a></li>
-        <li><a href="#connect">Let's Connect</a></li>
-    </ul>
-</nav>
-
-<div class="outer-container" id="content">
-    <!-- Introduction -->
-    <section id="intro">
-        <div class="styled-section">
-            <h1>Our Mission</h1>
-            <p>Welcome! Our mission is to empower brands by leveraging the potential of Extended Reality (XR) and Artificial Intelligence (AI).</p>
-            <p>We specialize in facilitating highly personalized Experience Programs that engage both visitors and staff.</p>
-            <p>Our role is to help you build and access an ecosystem of studios and solution providers who create the content and supply the necessary hardware.</p>
-            <a href="#connect" class="btn">Let's connect <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services">
-        <div class="styled-section">
-            <h2>Our Services</h2>
-            <p>We provide comprehensive solutions that combine experience programs with event support, creating seamless immersive experiences for your organization.</p>
-            
-            <div class="services-grid">
-                <!-- Experience Programs -->
-                <div>
-                    <h3><i class="fas fa-vr-cardboard"></i> Experience Programs</h3>
-                    <p>Customized immersive experiences designed to engage both visitors and staff.</p>
-                    
-                    <div class="feature-list">
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-                            <div class="feature-text">
-                                <h3>ROI Strategy</h3>
-                                <p>Develop measurable impact strategies for your immersive programs</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-users"></i></div>
-                            <div class="feature-text">
-                                <h3>Creative Partner Coordination</h3>
-                                <p>Access to our ecosystem of studios and content creators</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-tasks"></i></div>
-                            <div class="feature-text">
-                                <h3>Program Management</h3>
-                                <p>Full-service management of your experience programs</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Hardware Rental and Event Services -->
-                <div>
-                    <h3><i class="fas fa-laptop"></i> Hardware Rental & Event Services</h3>
-                    <p>Comprehensive event-based support to ensure flawless execution.</p>
-                    
-                    <div class="feature-list">
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-box"></i></div>
-                            <div class="feature-text">
-                                <h3>Hardware Rental</h3>
-                                <p>Access to cutting-edge XR equipment for your events</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-tools"></i></div>
-                            <div class="feature-text">
-                                <h3>Technical Setup</h3>
-                                <p>Professional preparation and configuration of all hardware</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fas fa-concierge-bell"></i></div>
-                            <div class="feature-text">
-                                <h3>Hospitality Services</h3>
-                                <p>Comprehensive support during your event for guests and staff</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Let's Connect-->
-    <section id="connect">
-        <div class="styled-section">
-            <h2>Let's Connect!</h2>
-            <p>
-                If you share this vision for a transformative future or are curious about how our ventures can intersect with your aspirations, I invite you to connect. Whether you're interested in XR innovation, strategic investment, community collaboration, conscious consumerism, consultancy services, or the search for sustainability, let's explore the possibilities together.
-            </p>
-            <div>
-                <ul>
-                    <li><a href="https://www.linkedin.com/company/executxr/" class="linkedin-button" target="_blank">Connect on LinkedIn</a></li>
-                    <li><a href="https://share-eu1.hsforms.com/1YCXo9kUrQH25n9rr5opICQfaotk" class="btn" target="_blank">Fill in a Form <i class="fas fa-file-alt"></i></a></li>
-                </ul>
-
-                <!-- Start of Meetings Embed Script -->
-                <div class="meetings-iframe-container" data-src="https://meetings-eu1.hubspot.com/linus-artois/introduction-meeting-on-website?embed=true"></div>
-                <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
-                <!-- End of Meetings Embed Script -->
-            </div>
-        </div>
-    </section>
-</div>
-
-<!-- Coming Soon Popup -->
-<div class="overlay" id="comingSoonOverlay">
-    <div class="popup">
-        <h2>Coming Soon!</h2>
-        <p>Stay tuned for more information. Drop me an email in the meanwhile: linus [at] executxr.com</p>
-        <button class="btn" onclick="closePopup()">Close</button>
+  <section id="top" class="section--hero" aria-labelledby="hero-h">
+    <div class="container">
+      <p class="eyebrow" data-i18n="eyebrow">Experience programmes</p>
+      <h1 id="hero-h" class="hero-h1" data-i18n="h1">The moment your story finally lands.</h1>
+      <p class="hero-sub" data-i18n="heroSub">Every story worth telling has a gap: between what you know and what your audience walks away with. We design the programme that closes it — and prove it closed.</p>
+      <div class="hero-ctas">
+        <a href="#start" class="cta-primary" data-i18n="heroCta1">Visit a running programme</a>
+        <a href="#stories" class="cta-text" data-i18n="heroCta2">Three stories, one distance</a>
+      </div>
     </div>
-</div>
+    <div class="beam" role="img" aria-label="A beam of warm light crossing a threshold from dark to light — the gap between a story and its audience." data-i18n-label="beamAlt">
+      <div class="beam__base" data-beam></div>
+      <div class="beam__glow" data-beam></div>
+      <div class="beam__line" data-beam-line data-beam></div>
+      <div class="beam__rays" data-beam-rays data-beam>
+        <div></div><div></div><div></div><div></div><div></div>
+      </div>
+      <p class="beam__label beam__label--left" data-i18n="beamLeft">Your story</p>
+      <p class="beam__label beam__label--right" data-i18n="beamRight">Your audience</p>
+    </div>
+  </section>
+
+  <section id="stories" class="section--stories" aria-labelledby="stories-h">
+    <div class="container stories-intro">
+      <h2 id="stories-h" class="stories-h2" data-i18n="storiesH">Three stories you may recognise.</h2>
+      <p class="stories-sub" data-i18n="storiesSub">The same distance, three different shapes. Recognise one, and you know where we come in.</p>
+    </div>
+
+    <div class="container stories-list">
+
+      <article class="story" data-reveal>
+        <figure class="story__figure" role="img" aria-label="Diagram: objects in a case on one side, a visit that stays on the other, with a beam of light crossing between them." data-i18n-label="s1ImgAlt">
+          <div class="story__figure-grid"></div>
+          <div class="story__figure-glow"></div>
+          <div class="story__figure-line"></div>
+          <div class="story__figure-rays"><div></div><div></div><div></div><div></div></div>
+          <figcaption class="story__caption">
+            <span data-i18n="s1FigL">Objects in a case</span>
+            <span data-i18n="s1FigR">A visit that stays</span>
+          </figcaption>
+        </figure>
+        <div>
+          <h3 class="story-h3" data-i18n="s1H">A collection visitors walk past.</h3>
+          <p class="story__lead" data-i18n="s1P1">The objects are there, the research behind them is thorough, the gallery was refurbished. Still the average visitor stops for eight seconds and moves on. The story sits in the case, not in the head of the person walking by.</p>
+          <button type="button" class="proof-toggle" aria-expanded="false" aria-controls="proof-1" data-proof-toggle="s1" data-i18n="proofCta">See the evidence</button>
+          <div id="proof-1" class="proof-panel" hidden>
+            <div class="proof-divider"><div class="proof-divider__bar"></div><div class="proof-divider__tick"></div></div>
+            <div class="proof-list">
+              <p data-i18n="s1P2">We build a programme that turns looking into experiencing: which single meaning has to stay, in what order, and at which moment of the visit.</p>
+              <p data-i18n="s1Pr1">Programme across several galleries, built around one core meaning per cluster.</p>
+              <p data-i18n="s1Pr2b">Gallo-Romeins Museum and Mercator, with Visit Flanders — multi-year programmes across galleries, sites and digital channels.</p>
+              <p class="is-muted" data-i18n="s1Pr2">dwell time before / after — figure to be supplied</p>
+              <p class="is-muted" data-i18n="s1Pr3">visitor figures since opening — to be supplied</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story story--reverse" data-reveal>
+        <div>
+          <h3 class="story-h3" data-i18n="s2H">Findings that never leave the field.</h3>
+          <p class="story__lead" data-i18n="s2P1">The work is peer-reviewed, the methodology holds, the results matter. Outside a small circle it stays unreadable — while funders, policymakers and the public are exactly who should understand it.</p>
+          <button type="button" class="proof-toggle" aria-expanded="false" aria-controls="proof-2" data-proof-toggle="s2" data-i18n="proofCta">See the evidence</button>
+          <div id="proof-2" class="proof-panel" hidden>
+            <div class="proof-divider"><div class="proof-divider__bar"></div><div class="proof-divider__tick"></div></div>
+            <div class="proof-list">
+              <p data-i18n="s2P2">We translate without flattening: the methodology stays visible, the nuance stays intact, but the order follows what an outsider needs to get in.</p>
+              <p data-i18n="s2Pr1">Fixed method: three to five interviews with the researchers themselves, then a programme document.</p>
+              <p data-i18n="s2Pr2">Every simplification goes back to the person responsible for the content before it is final.</p>
+              <p class="is-muted" data-i18n="s2Pr3">research reference case — to be supplied</p>
+            </div>
+          </div>
+        </div>
+        <figure class="story__figure" role="img" aria-label="Diagram: a published paper on one side, a public that understands it on the other, with a beam of light crossing between them." data-i18n-label="s2ImgAlt">
+          <div class="story__figure-grid"></div>
+          <div class="story__figure-glow"></div>
+          <div class="story__figure-line"></div>
+          <div class="story__figure-rays"><div></div><div></div><div></div><div></div></div>
+          <figcaption class="story__caption">
+            <span data-i18n="s2FigL">A published paper</span>
+            <span data-i18n="s2FigR">A public that gets it</span>
+          </figcaption>
+        </figure>
+      </article>
+
+      <article class="story" data-reveal>
+        <figure class="story__figure" role="img" aria-label="Diagram: a slide in a deck on one side, a budget defended on the other, with a beam of light crossing between them." data-i18n-label="s3ImgAlt">
+          <div class="story__figure-grid"></div>
+          <div class="story__figure-glow"></div>
+          <div class="story__figure-line"></div>
+          <div class="story__figure-rays"><div></div><div></div><div></div><div></div></div>
+          <figcaption class="story__caption">
+            <span data-i18n="s3FigL">A slide in a deck</span>
+            <span data-i18n="s3FigR">A budget defended</span>
+          </figcaption>
+        </figure>
+        <div>
+          <h3 class="story-h3" data-i18n="s3H">A story that has to defend a budget internally.</h3>
+          <p class="story__lead" data-i18n="s3P1">The sustainability or innovation story exists, but it lives in an annual report and a deck. What is missing on the board slide is what it returns — and without that figure it reads as nice rather than defensible.</p>
+          <button type="button" class="proof-toggle" aria-expanded="false" aria-controls="proof-3" data-proof-toggle="s3" data-i18n="proofCta">See the evidence</button>
+          <div id="proof-3" class="proof-panel" hidden>
+            <div class="proof-divider"><div class="proof-divider__bar"></div><div class="proof-divider__tick"></div></div>
+            <div class="proof-list">
+              <p data-i18n="s3P2">We build the case with you: what has to land with which audience, at what cost per contact moment, and how you defend that internally.</p>
+              <p data-i18n="s3Pr1">Danone — one experience, several sites and events across countries, rolled out without starting from scratch each time.</p>
+              <p class="is-muted" data-i18n="s3Pr2">cost per contact moment — figure to be supplied</p>
+              <p data-i18n="s3Pr3">We are also working on a project in the construction sector. More on that soon.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="method" class="section--method" aria-labelledby="method-h">
+    <div class="split-header">
+      <p class="section-label" data-i18n="navMethod">How we work</p>
+      <h2 id="method-h" class="section-h2" data-i18n="methodH">Meaning first. Then the programme. Then the medium.</h2>
+    </div>
+    <div class="multi-grid multi-grid--3">
+      <div class="method-col">
+        <p class="method-col__label" data-i18n="m1L">01 — Meaning</p>
+        <h3 class="method-col__h3" data-i18n="m1H">What sticks with people?</h3>
+        <p class="method-col__p" data-i18n="m1P">Which single message, for which audience, at which moment. Three to five conversations with the people who know the content.</p>
+      </div>
+      <div class="method-col">
+        <p class="method-col__label" data-i18n="m2L">02 — Programme</p>
+        <h3 class="method-col__h3" data-i18n="m2H">A multi-year plan, not a project.</h3>
+        <p class="method-col__p" data-i18n="m2P">With a baseline, an investment rhythm and measures that hold up internally. Measurement sits in the design, not in the aftercare.</p>
+      </div>
+      <div class="method-col">
+        <p class="method-col__label" data-i18n="m3L">03 — Delivery</p>
+        <h3 class="method-col__h3" data-i18n="m3H">We stay until it runs.</h3>
+        <p class="method-col__p" data-i18n="m3P">Production, on-site hosting and a debrief with figures. One point of contact from start to close.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="people" class="section--people" aria-labelledby="people-h">
+    <div class="split-header">
+      <p class="section-label" data-i18n="navPeople">Who you get</p>
+      <div>
+        <h2 id="people-h" class="section-h2" data-i18n="peopleH">Two people you deal with. A team we assemble.</h2>
+        <p class="section-sub section-sub--light" data-i18n="peopleSub">Senior leadership by the day, not by the headcount. Cederik and Sam lead every programme — and bring in exactly the specialists it calls for.</p>
+      </div>
+    </div>
+
+    <div class="multi-grid multi-grid--2 people-cards">
+      <div class="person-card" data-reveal>
+        <div class="person-card__portrait" role="img" aria-label="portrait — Cederik" data-i18n-label="p1Alt">
+          <span data-i18n="p1Alt">portrait — Cederik</span>
+        </div>
+        <div>
+          <h3 class="person-card__name" data-i18n="p1Name">Cederik</h3>
+          <p class="person-card__role" data-i18n="p1Role">Founder &amp; CEO</p>
+          <p class="person-card__bio" data-i18n="p1Bio">Builds the programme and the business case. Present at the board table when the investment has to be defended.</p>
+          <a href="https://www.linkedin.com/company/executxr/" class="person-link" rel="noopener" target="_blank" data-i18n="profileLink">Profile on LinkedIn</a>
+        </div>
+      </div>
+      <div class="person-card" data-reveal>
+        <div class="person-card__portrait" role="img" aria-label="portrait — Sam" data-i18n-label="p2Alt">
+          <span data-i18n="p2Alt">portrait — Sam</span>
+        </div>
+        <div>
+          <h3 class="person-card__name" data-i18n="p2Name">Sam</h3>
+          <p class="person-card__role" data-i18n="p2Role">General Manager</p>
+          <p class="person-card__bio" data-i18n="p2Bio">Runs the discovery and the delivery. One point of contact from first conversation through to the debrief.</p>
+          <a href="https://www.linkedin.com/company/executxr/" class="person-link" rel="noopener" target="_blank" data-i18n="profileLink">Profile on LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-block">
+      <div class="split-header">
+        <p class="section-label" data-i18n="teamLabel">The team</p>
+        <div>
+          <h3 class="team-h3" data-i18n="teamH">Whoever the programme needs, we find.</h3>
+          <p class="team-p" data-i18n="teamP">Not everything runs through the two of us. Each programme is staffed to what it actually demands — we know who is good in this field, we bring them in directly, and we hold the budget.</p>
+          <div class="multi-grid multi-grid--2 role-grid">
+            <div class="role-card" data-reveal>
+              <h4 class="role-card__h4" data-i18n="role1H">Creative director</h4>
+              <p class="role-card__p" data-i18n="role1P">Judges the artistic dimension. Is this worth an hour of a visitor's life?</p>
+            </div>
+            <div class="role-card" data-reveal>
+              <h4 class="role-card__h4" data-i18n="role2H">Programme manager</h4>
+              <p class="role-card__p" data-i18n="role2P">Keeps a multi-year plan on schedule, on budget and on message.</p>
+            </div>
+            <div class="role-card" data-reveal>
+              <h4 class="role-card__h4" data-i18n="role3H">Venue &amp; event management</h4>
+              <p class="role-card__p" data-i18n="role3P">Makes the space, the flow and the day itself work — from opening to last visitor.</p>
+            </div>
+            <div class="role-card" data-reveal>
+              <h4 class="role-card__h4" data-i18n="role4H">Technical support</h4>
+              <p class="role-card__p" data-i18n="role4P">On site or remote, for as long as the programme runs.</p>
+            </div>
+          </div>
+          <p class="team-close" data-i18n="teamClose">You never carry a fixed team you have to keep paying for. You get the roles the programme needs, for as long as it needs them.</p>
+          <p class="people-note" data-i18n="peopleNote">surnames, titles, portraits and personal LinkedIn links to be confirmed</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="measure" class="section--measure" aria-labelledby="measure-h">
+    <div class="container">
+      <div class="split-header">
+        <p class="section-label section-label--dark" data-i18n="navMeasure">How we measure</p>
+        <div>
+          <h2 id="measure-h" class="section-h2" data-i18n="measureH">Three questions we hold ourselves to.</h2>
+          <p class="section-sub section-sub--dark" data-i18n="measureSub">Reach and engagement mean little on their own. We measure whether the right people came, whether they came back, and whether they brought someone.</p>
+        </div>
+      </div>
+      <div class="multi-grid multi-grid--3 measure-grid">
+        <div class="measure-card" data-reveal>
+          <p class="measure-card__r">R<span>1</span></p>
+          <h3 class="measure-card__h3" data-i18n="r1H">The right visitor</h3>
+          <p class="measure-card__p" data-i18n="r1P">Not more visitors — the ones your story was meant for. Defined before anything is built.</p>
+          <p class="measure-card__metric" data-i18n="r1M">audience fit · cost per contact moment</p>
+        </div>
+        <div class="measure-card" data-reveal>
+          <p class="measure-card__r">R<span>2</span></p>
+          <h3 class="measure-card__h3" data-i18n="r2H">The returning visitor</h3>
+          <p class="measure-card__p" data-i18n="r2P">A second visit is the honest test of whether the first one meant something.</p>
+          <p class="measure-card__metric" data-i18n="r2M">return rate · occupancy per slot</p>
+        </div>
+        <div class="measure-card" data-reveal>
+          <p class="measure-card__r">R<span>3</span></p>
+          <h3 class="measure-card__h3" data-i18n="r3H">The referring visitor</h3>
+          <p class="measure-card__p" data-i18n="r3P">When someone brings a colleague, a class or a family, the story travelled without you.</p>
+          <p class="measure-card__metric" data-i18n="r3M">referral share · word of mouth</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="start" class="section--start" aria-labelledby="start-h">
+    <div class="container start-grid">
+      <div>
+        <h2 id="start-h" class="start-h2" data-i18n="startH">Start with a discovery, not a proposal.</h2>
+        <p class="start-sub" data-i18n="startSub">Before anything is made, it is clear what has to land, with whom, and what you will hold it to. Including when the answer is: not now.</p>
+        <ol class="start-steps">
+          <li><span class="start-steps__index">01</span><span class="start-steps__text" data-i18n="d1">Three to five interviews with your own people.</span></li>
+          <li><span class="start-steps__index">02</span><span class="start-steps__text" data-i18n="d2">A programme document on your table within two weeks.</span></li>
+          <li><span class="start-steps__index">03</span><span class="start-steps__text" data-i18n="d3">A baseline and measures in the language of your board or management.</span></li>
+          <li><span class="start-steps__index">04</span><span class="start-steps__text" data-i18n="d4">An explicit recommendation to go ahead or wait. The document stays yours.</span></li>
+        </ol>
+      </div>
+
+      <div class="start__right">
+        <div class="visit-card">
+          <p class="visit-card__label" data-i18n="visitLabel">Start here</p>
+          <h3 class="visit-card__h3" data-i18n="visitH">Come and see one running.</h3>
+          <p class="visit-card__p" data-i18n="visitP">We would rather receive you at a live programme than in a meeting room. You see what visitors take home — and you can ask them yourself.</p>
+          <a href="mailto:sam@executxr.com?subject=Visit%20a%20running%20programme" class="visit-card__cta" data-i18n="visitCta">Request a visit</a>
+          <p class="visit-card__note" data-i18n="visitNote">We host visits at one of our live projects — which one depends on what is running and what fits your question.</p>
+        </div>
+
+        <div class="meet-card">
+          <h3 class="meet-card__h3" data-i18n="meetH">Book a slot directly</h3>
+          <p class="meet-card__p" data-i18n="meetP">Thirty minutes, Tuesday or Thursday afternoon. Straight into the diary — no exchange of emails first.</p>
+          <div class="meet-card__slot"><span data-i18n="meetSlot">HubSpot Meetings — embed goes here</span></div>
+          <p class="meet-card__note" data-i18n="meetNote">Tue + Thu, 14:30–18:00 · 30 min · confirmation and calendar invite sent automatically</p>
+        </div>
+
+        <div class="form-card">
+          <h3 class="form-card__h3" data-i18n="formH">Get in touch</h3>
+          <p class="form-card__sub" data-i18n="formSub">Tell us briefly what should land, and with whom. We reply within two working days.</p>
+          <form class="form-grid" id="contact-form">
+            <div class="form-field">
+              <label for="f-name" class="form-label" data-i18n="fName">Name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required class="form-input">
+            </div>
+            <div class="form-field">
+              <label for="f-org" class="form-label" data-i18n="fOrg">Organisation</label>
+              <input id="f-org" name="organisation" type="text" autocomplete="organization" class="form-input">
+            </div>
+            <div class="form-field">
+              <label for="f-email" class="form-label" data-i18n="fEmail">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required class="form-input">
+            </div>
+            <div class="form-field">
+              <label for="f-msg" class="form-label" data-i18n="fMsg">What should land, and with whom?</label>
+              <textarea id="f-msg" name="message" rows="4" class="form-textarea"></textarea>
+            </div>
+            <button type="submit" class="form-submit" data-i18n="fSubmit">Send</button>
+            <p class="form-status" id="form-status" aria-live="polite"></p>
+          </form>
+          <p class="form-footer">sam@executxr.com<br><span data-i18n="formNote">Goes to sam@executxr.com. Confirm the recipient and the HubSpot form ID before go-live.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tech" aria-labelledby="tech-h">
+    <div class="container split-header">
+      <p class="section-label section-label--dark" data-i18n="techLabel">Last layer</p>
+      <div>
+        <h2 id="tech-h" class="tech-h2" data-i18n="techH">Where XR makes the difference — and where it does not.</h2>
+        <p class="tech-p" data-i18n="techP">The medium comes last. Often it is immersive, because depth and reach meet there: one experience, intense for the visitor and still able to travel between locations. Sometimes the answer is an exhibition, a film, or a table to sit around. We have no stake in one outcome.</p>
+        <div class="multi-grid multi-grid--2 tech-cols">
+          <div>
+            <h3 class="tech-col__h3" data-i18n="tech1H">Infrastructure</h3>
+            <p class="tech-col__p" data-i18n="tech1P">Roll-out across locations with remote management, so content can change without rebuilding each time. On shared sites and events we work with Hydra for this.</p>
+          </div>
+          <div>
+            <h3 class="tech-col__h3" data-i18n="tech2H">People on site</h3>
+            <p class="tech-col__p" data-i18n="tech2P">Hosts who turn equipment into a visit, and a project manager who coordinates everything through to the debrief.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container bar">
+    <p class="footer-wordmark">executxr</p>
+    <div class="footer-links">
+      <div class="footer-links__group">
+        <a href="#stories" data-i18n="navStories">Three stories</a>
+        <a href="#measure" data-i18n="navMeasure">How we measure</a>
+      </div>
+      <div class="footer-links__group">
+        <a href="#start" data-i18n="navStart">Start</a>
+        <a href="mailto:sam@executxr.com">sam@executxr.com</a>
+      </div>
+      <div class="footer-links__group">
+        <a href="https://www.linkedin.com/company/executxr/" rel="noopener" target="_blank" data-i18n="linkedin">LinkedIn</a>
+      </div>
+      <div class="lang-switch lang-switch--footer" role="group" aria-label="Language" data-i18n-label="langLabel">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-btn" data-lang="nl" aria-pressed="false">NL</button>
+        <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false">FR</button>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script>
-    function showPopup() {
-        document.getElementById('comingSoonOverlay').style.display = 'flex';
+(function () {
+  var COPY = {
+    en: {
+      skip: 'Skip to content', navLabel: 'Main navigation', langLabel: 'Language',
+      navStories: 'Three stories', navMethod: 'How we work', navMeasure: 'How we measure', navStart: 'Start', navCta: 'Talk to us',
+      eyebrow: 'Experience programmes',
+      h1: 'The moment your story finally lands.',
+      heroSub: 'Every story worth telling has a gap: between what you know and what your audience walks away with. We design the programme that closes it — and prove it closed.',
+      heroCta1: 'Visit a running programme', heroCta2: 'Three stories, one distance',
+      beamAlt: 'A beam of warm light crossing a threshold from dark to light — the gap between a story and its audience.',
+      beamLeft: 'Your story', beamRight: 'Your audience',
+      storiesH: 'Three stories you may recognise.',
+      storiesSub: 'The same distance, three different shapes. Recognise one, and you know where we come in.',
+      proofCta: 'See the evidence',
+      s1H: 'A collection visitors walk past.',
+      s1P1: 'The objects are there, the research behind them is thorough, the gallery was refurbished. Still the average visitor stops for eight seconds and moves on. The story sits in the case, not in the head of the person walking by.',
+      s1P2: 'We build a programme that turns looking into experiencing: which single meaning has to stay, in what order, and at which moment of the visit.',
+      s1ImgAlt: 'Diagram: objects in a case on one side, a visit that stays on the other, with a beam of light crossing between them.',
+      s1FigL: 'Objects in a case', s1FigR: 'A visit that stays',
+      s1Pr1: 'Programme across several galleries, built around one core meaning per cluster.',
+      s1Pr2: 'dwell time before / after — figure to be supplied',
+      s1Pr2b: 'Gallo-Romeins Museum and Mercator, with Visit Flanders — multi-year programmes across galleries, sites and digital channels.',
+      s1Pr3: 'visitor figures since opening — to be supplied',
+      s2H: 'Findings that never leave the field.',
+      s2P1: 'The work is peer-reviewed, the methodology holds, the results matter. Outside a small circle it stays unreadable — while funders, policymakers and the public are exactly who should understand it.',
+      s2P2: 'We translate without flattening: the methodology stays visible, the nuance stays intact, but the order follows what an outsider needs to get in.',
+      s2ImgAlt: 'Diagram: a published paper on one side, a public that understands it on the other, with a beam of light crossing between them.',
+      s2FigL: 'A published paper', s2FigR: 'A public that gets it',
+      s2Pr1: 'Fixed method: three to five interviews with the researchers themselves, then a programme document.',
+      s2Pr2: 'Every simplification goes back to the person responsible for the content before it is final.',
+      s2Pr3: 'research reference case — to be supplied',
+      s3H: 'A story that has to defend a budget internally.',
+      s3P1: 'The sustainability or innovation story exists, but it lives in an annual report and a deck. What is missing on the board slide is what it returns — and without that figure it reads as nice rather than defensible.',
+      s3P2: 'We build the case with you: what has to land with which audience, at what cost per contact moment, and how you defend that internally.',
+      s3ImgAlt: 'Diagram: a slide in a deck on one side, a budget defended on the other, with a beam of light crossing between them.',
+      s3FigL: 'A slide in a deck', s3FigR: 'A budget defended',
+      s3Pr1: 'Danone — one experience, several sites and events across countries, rolled out without starting from scratch each time.',
+      s3Pr2: 'cost per contact moment — figure to be supplied',
+      s3Pr3: 'We are also working on a project in the construction sector. More on that soon.',
+      methodH: 'Meaning first. Then the programme. Then the medium.',
+      m1L: '01 — Meaning', m1H: 'What sticks with people?',
+      m1P: 'Which single message, for which audience, at which moment. Three to five conversations with the people who know the content.',
+      m2L: '02 — Programme', m2H: 'A multi-year plan, not a project.',
+      m2P: 'With a baseline, an investment rhythm and measures that hold up internally. Measurement sits in the design, not in the aftercare.',
+      m3L: '03 — Delivery', m3H: 'We stay until it runs.',
+      m3P: 'Production, on-site hosting and a debrief with figures. One point of contact from start to close.',
+      measureH: 'Three questions we hold ourselves to.',
+      measureSub: 'Reach and engagement mean little on their own. We measure whether the right people came, whether they came back, and whether they brought someone.',
+      r1H: 'The right visitor', r1P: 'Not more visitors — the ones your story was meant for. Defined before anything is built.',
+      r1M: 'audience fit · cost per contact moment',
+      r2H: 'The returning visitor', r2P: 'A second visit is the honest test of whether the first one meant something.',
+      r2M: 'return rate · occupancy per slot',
+      r3H: 'The referring visitor', r3P: 'When someone brings a colleague, a class or a family, the story travelled without you.',
+      r3M: 'referral share · word of mouth',
+      startH: 'Start with a discovery, not a proposal.',
+      startSub: 'Before anything is made, it is clear what has to land, with whom, and what you will hold it to. Including when the answer is: not now.',
+      d1: 'Three to five interviews with your own people.',
+      d2: 'A programme document on your table within two weeks.',
+      d3: 'A baseline and measures in the language of your board or management.',
+      d4: 'An explicit recommendation to go ahead or wait. The document stays yours.',
+      navPeople: 'Who you get',
+      visitLabel: 'Start here',
+      visitH: 'Come and see one running.',
+      visitP: 'We would rather receive you at a live programme than in a meeting room. You see what visitors take home — and you can ask them yourself.',
+      visitCta: 'Request a visit',
+      peopleH: 'Two people you deal with. A team we assemble.',
+      peopleSub: 'Senior leadership by the day, not by the headcount. Cederik and Sam lead every programme — and bring in exactly the specialists it calls for.',
+      profileLink: 'Profile on LinkedIn',
+      teamLabel: 'The team',
+      teamH: 'Whoever the programme needs, we find.',
+      teamP: 'Not everything runs through the two of us. Each programme is staffed to what it actually demands — we know who is good in this field, we bring them in directly, and we hold the budget.',
+      role1H: 'Creative director',
+      role1P: 'Judges the artistic dimension. Is this worth an hour of a visitor’s life?',
+      role2H: 'Programme manager',
+      role2P: 'Keeps a multi-year plan on schedule, on budget and on message.',
+      role3H: 'Venue & event management',
+      role3P: 'Makes the space, the flow and the day itself work — from opening to last visitor.',
+      role4H: 'Technical support',
+      role4P: 'On site or remote, for as long as the programme runs.',
+      teamClose: 'You never carry a fixed team you have to keep paying for. You get the roles the programme needs, for as long as it needs them.',
+      p1Name: 'Cederik', p1Role: 'Founder & CEO',
+      p1Bio: 'Builds the programme and the business case. Present at the board table when the investment has to be defended.',
+      p1Alt: 'portrait — Cederik',
+      p2Name: 'Sam', p2Role: 'General Manager',
+      p2Bio: 'Runs the discovery and the delivery. One point of contact from first conversation through to the debrief.',
+      p2Alt: 'portrait — Sam',
+      peopleNote: 'surnames, titles, portraits and personal LinkedIn links to be confirmed',
+      visitNote: 'We host visits at one of our live projects — which one depends on what is running and what fits your question.',
+      formH: 'Get in touch', formSub: 'Tell us briefly what should land, and with whom. We reply within two working days.',
+      fName: 'Name', fOrg: 'Organisation', fEmail: 'Email', fMsg: 'What should land, and with whom?',
+      fSubmit: 'Send',
+      formNote: 'Goes to sam@executxr.com. Confirm the recipient and the HubSpot form ID before go-live.',
+      techLabel: 'Last layer',
+      techH: 'Where XR makes the difference — and where it does not.',
+      techP: 'The medium comes last. Often it is immersive, because depth and reach meet there: one experience, intense for the visitor and still able to travel between locations. Sometimes the answer is an exhibition, a film, or a table to sit around. We have no stake in one outcome.',
+      tech1H: 'Infrastructure', tech1P: 'Roll-out across locations with remote management, so content can change without rebuilding each time. On shared sites and events we work with Hydra for this.',
+      tech2H: 'People on site', tech2P: 'Hosts who turn equipment into a visit, and a project manager who coordinates everything through to the debrief.',
+      meetH: 'Book a slot directly',
+      meetP: 'Thirty minutes, Tuesday or Thursday afternoon. Straight into the diary — no exchange of emails first.',
+      meetSlot: 'HubSpot Meetings — embed goes here',
+      meetNote: 'Tue + Thu, 14:30–18:00 · 30 min · confirmation and calendar invite sent automatically',
+      linkedin: 'LinkedIn',
+      sent: 'Thank you — your message has been prepared. Connect the form to HubSpot before go-live.'
+    },
+    nl: {
+      skip: 'Naar de inhoud', navLabel: 'Hoofdnavigatie', langLabel: 'Taal',
+      navStories: 'Drie verhalen', navMethod: 'Werkwijze', navMeasure: 'Meten', navStart: 'Start', navCta: 'Contact',
+      eyebrow: "Experience programma's",
+      h1: 'Het moment dat uw verhaal eindelijk landt.',
+      heroSub: 'Elk verhaal dat het vertellen waard is heeft een kloof: tussen wat u weet en wat uw publiek meeneemt. Wij ontwerpen het programma dat die kloof sluit — en bewijzen dat ze gesloten is.',
+      heroCta1: 'Bezoek een lopend programma', heroCta2: 'Drie verhalen, dezelfde afstand',
+      beamAlt: 'Een bundel warm licht die een drempel oversteekt van donker naar licht — de kloof tussen een verhaal en zijn publiek.',
+      beamLeft: 'Uw verhaal', beamRight: 'Uw publiek',
+      storiesH: 'Drie verhalen die u misschien herkent.',
+      storiesSub: 'Dezelfde afstand, drie keer anders. Herkent u er één, dan weet u waar wij binnenkomen.',
+      proofCta: 'Bekijk het bewijs',
+      s1H: 'Een collectie waar bezoekers langs lopen.',
+      s1P1: 'De stukken staan er, het onderzoek erachter is grondig, de zaal is opgeknapt. Toch blijft de gemiddelde bezoeker acht seconden staan en loopt dan door. Het verhaal zit in de vitrine, niet in het hoofd van wie langskomt.',
+      s1P2: 'Wij bouwen een programma dat van kijken beleven maakt: welke ene betekenis moet blijven hangen, in welke volgorde, en op welk moment in het bezoek.',
+      s1ImgAlt: 'Schema: stukken in een vitrine aan de ene kant, een bezoek dat bijblijft aan de andere, met een lichtbundel ertussen.',
+      s1FigL: 'Stukken in een vitrine', s1FigR: 'Een bezoek dat bijblijft',
+      s1Pr1: 'Programma over meerdere zalen, opgebouwd rond één kernbetekenis per cluster.',
+      s1Pr2: 'verblijfsduur voor / na — cijfer aanleveren',
+      s1Pr2b: 'Gallo-Romeins Museum en Mercator, met Visit Flanders — meerjarenprogramma’s over zalen, sites en digitale kanalen.',
+      s1Pr3: 'bezoekcijfers sinds opening — aan te leveren',
+      s2H: 'Bevindingen die het vakgebied nooit verlaten.',
+      s2P1: 'Het werk is peer-reviewed, de methodologie klopt, de resultaten doen ertoe. Buiten een kleine kring blijft het onleesbaar — terwijl funders, beleidsmakers en het brede publiek het juist zouden moeten begrijpen.',
+      s2P2: 'Wij vertalen zonder te versimpelen: de methodologie blijft zichtbaar, de nuance blijft staan, maar de opbouw volgt wat een buitenstaander nodig heeft om binnen te komen.',
+      s2ImgAlt: 'Schema: een gepubliceerd paper aan de ene kant, een publiek dat het begrijpt aan de andere, met een lichtbundel ertussen.',
+      s2FigL: 'Een gepubliceerd paper', s2FigR: 'Een publiek dat het snapt',
+      s2Pr1: 'Vaste werkwijze: drie tot vijf interviews met de onderzoekers zelf, daarna een programmadocument.',
+      s2Pr2: 'Elke vereenvoudiging wordt teruggelegd bij de inhoudelijke verantwoordelijke voor ze definitief is.',
+      s2Pr3: 'referentiecase uit onderzoek — aan te leveren',
+      s3H: 'Een verhaal dat intern een budget moet verdedigen.',
+      s3P1: 'Het duurzaamheids- of innovatieverhaal is er, maar het leeft in een jaarverslag en een deck. Op de board-slide ontbreekt wat het oplevert — en zonder dat cijfer is het leuk in plaats van verdedigbaar.',
+      s3P2: 'Wij bouwen de case mee op: wat er moet landen bij welke doelgroep, tegen welke kost per contactmoment, en hoe u dat intern verantwoordt.',
+      s3ImgAlt: 'Schema: een slide in een deck aan de ene kant, een verdedigd budget aan de andere, met een lichtbundel ertussen.',
+      s3FigL: 'Een slide in een deck', s3FigR: 'Een verdedigd budget',
+      s3Pr1: 'Danone — één ervaring, meerdere vestigingen en events in verschillende landen, uitgerold zonder elke keer opnieuw te beginnen.',
+      s3Pr2: 'kost per contactmoment — cijfer aanleveren',
+      s3Pr3: 'Daarnaast werken we aan een project in de bouwsector. Meer daarover binnenkort.',
+      methodH: 'Eerst de betekenis. Dan het programma. Dan pas het middel.',
+      m1L: '01 — Betekenis', m1H: 'Wat blijft hangen bij mensen?',
+      m1P: 'Welke ene boodschap, bij welk publiek, op welk moment. Drie tot vijf gesprekken met de mensen die de inhoud kennen.',
+      m2L: '02 — Programma', m2H: 'Een meerjarig plan, geen project.',
+      m2P: 'Met een nulmeting, een investeringsritme en meetpunten die intern standhouden. Meten zit in het ontwerp, niet in de nazorg.',
+      m3L: '03 — Uitvoering', m3H: 'Wij blijven tot het draait.',
+      m3P: 'Productie, begeleiding ter plaatse en een debrief met cijfers. Eén aanspreekpunt van start tot afsluiting.',
+      measureH: 'Drie vragen waar wij ons aan houden.',
+      measureSub: 'Bereik en engagement zeggen los van elkaar weinig. Wij meten of de juiste mensen kwamen, of ze terugkwamen, en of ze iemand meebrachten.',
+      r1H: 'De juiste bezoeker', r1P: 'Niet méér bezoekers — die voor wie uw verhaal bedoeld was. Vastgelegd voor er iets gebouwd wordt.',
+      r1M: 'doelgroepfit · kost per contactmoment',
+      r2H: 'De terugkerende bezoeker', r2P: 'Een tweede bezoek is de eerlijke test of het eerste iets betekende.',
+      r2M: 'terugkeergraad · bezetting per tijdslot',
+      r3H: 'De doorverwijzende bezoeker', r3P: 'Wie een collega, een klas of een gezin meebrengt, laat het verhaal reizen zonder u.',
+      r3M: 'aandeel doorverwijzing · mond-tot-mond',
+      startH: 'Begin met een verkenning, niet met een voorstel.',
+      startSub: 'Voor er iets gemaakt wordt, ligt vast wat er moet landen, bij wie, en waaraan u het afmeet. Ook als de uitkomst is: nu niet.',
+      d1: 'Drie tot vijf interviews met uw eigen mensen.',
+      d2: 'Binnen twee weken een programmadocument op uw tafel.',
+      d3: 'Nulmeting en meetpunten in de taal van uw bestuur of directie.',
+      d4: 'Een expliciet advies om door te gaan of te wachten. Het document blijft van u.',
+      navPeople: 'Wie u krijgt',
+      visitLabel: 'Begin hier',
+      visitH: 'Kom er een zien draaien.',
+      visitP: 'Wij ontvangen u liever bij een lopend programma dan in een vergaderzaal. U ziet wat bezoekers meenemen — en u vraagt het hun zelf.',
+      visitCta: 'Bezoek aanvragen',
+      peopleH: 'Twee vaste gezichten. Een team dat we samenstellen.',
+      peopleSub: 'Senior leiding per dag, niet per hoofd in dienst. Cederik en Sam leiden elk programma — en halen precies de specialisten binnen die het vraagt.',
+      profileLink: 'Profiel op LinkedIn',
+      teamLabel: 'Het team',
+      teamH: 'Wie het programma nodig heeft, vinden wij.',
+      teamP: 'Niet alles loopt via ons twee. Elk programma wordt bemand naar wat het echt vraagt — wij weten wie goed is in dit vak, wij halen die mensen rechtstreeks binnen, en wij houden het budget in de hand.',
+      role1H: 'Creative director',
+      role1P: 'Beoordeelt de artistieke dimensie. Is dit een uur van iemands leven waard?',
+      role2H: 'Programmamanager',
+      role2P: 'Houdt een meerjarenplan op schema, op budget en op boodschap.',
+      role3H: 'Venue- & eventmanagement',
+      role3P: 'Zorgt dat de ruimte, de doorstroom en de dag zelf werken — van opening tot laatste bezoeker.',
+      role4H: 'Technische ondersteuning',
+      role4P: 'Ter plaatse of op afstand, zolang het programma draait.',
+      teamClose: 'U draagt nooit een vast team dat u moet blijven betalen. U krijgt de rollen die het programma nodig heeft, zolang het ze nodig heeft.',
+      p1Name: 'Cederik', p1Role: 'Oprichter & CEO',
+      p1Bio: 'Bouwt het programma en de businesscase. Aanwezig aan de bestuurstafel wanneer de investering verdedigd moet worden.',
+      p1Alt: 'portret — Cederik',
+      p2Name: 'Sam', p2Role: 'General Manager',
+      p2Bio: 'Leidt de verkenning en de uitvoering. Eén aanspreekpunt van eerste gesprek tot debrief.',
+      p2Alt: 'portret — Sam',
+      peopleNote: 'familienamen, functietitels, portretten en persoonlijke LinkedIn-links te bevestigen',
+      visitNote: 'Wij organiseren bezoeken bij één van onze lopende projecten — welk project hangt af van wat er draait en wat bij uw vraag past.',
+      formH: 'Neem contact op', formSub: 'Vertel kort wat er moet landen, en bij wie. Wij antwoorden binnen twee werkdagen.',
+      fName: 'Naam', fOrg: 'Organisatie', fEmail: 'E-mail', fMsg: 'Wat moet landen, en bij wie?',
+      fSubmit: 'Verzenden',
+      formNote: 'Gaat naar sam@executxr.com. Bevestig de ontvanger en het HubSpot-formulier-ID voor livegang.',
+      techLabel: 'Laatste laag',
+      techH: 'Waar XR het verschil maakt — en waar niet.',
+      techP: 'Het middel komt als laatste. Vaak is dat immersief, omdat diepte en bereik daar samenvallen: één ervaring, intens voor de bezoeker en toch reisbaar tussen locaties. Soms is het antwoord een tentoonstelling, een film of een gesprekstafel. Wij hebben geen belang bij één uitkomst.',
+      tech1H: 'Infrastructuur', tech1P: 'Uitrol over locaties met beheer op afstand, zodat content kan wisselen zonder elke keer opnieuw te bouwen. Op gedeelde locaties en events werken wij hiervoor samen met Hydra.',
+      tech2H: 'Mensen ter plaatse', tech2P: 'Begeleiders die van techniek een bezoek maken, en een projectleider die alles coördineert tot en met de debrief.',
+      meetH: 'Boek meteen een moment',
+      meetP: 'Dertig minuten, dinsdag- of donderdagnamiddag. Rechtstreeks in de agenda — geen mailwisseling vooraf.',
+      meetSlot: 'HubSpot Meetings — embed komt hier',
+      meetNote: 'Di + do, 14u30–18u · 30 min · bevestiging en agenda-uitnodiging gaan automatisch',
+      linkedin: 'LinkedIn',
+      sent: 'Bedankt — uw bericht is opgesteld. Koppel het formulier aan HubSpot voor livegang.'
+    },
+    fr: {
+      skip: 'Aller au contenu', navLabel: 'Navigation principale', langLabel: 'Langue',
+      navStories: 'Trois récits', navMethod: 'Méthode', navMeasure: 'Mesure', navStart: 'Commencer', navCta: 'Nous contacter',
+      eyebrow: "Programmes d'expérience",
+      h1: 'Le moment où votre récit atteint enfin son public.',
+      heroSub: "Tout récit qui vaut la peine comporte un écart : entre ce que vous savez et ce que votre public retient. Nous concevons le programme qui le franchit — et prouvons qu'il l'a franchi.",
+      heroCta1: 'Visitez un programme en activité', heroCta2: 'Trois récits, une même distance',
+      beamAlt: "Un faisceau de lumière chaude franchissant un seuil, de l'obscurité vers la lumière — l'écart entre un récit et son public.",
+      beamLeft: 'Votre récit', beamRight: 'Votre public',
+      storiesH: 'Trois récits que vous reconnaîtrez peut-être.',
+      storiesSub: 'La même distance, sous trois formes. Si vous en reconnaissez une, vous savez où nous intervenons.',
+      proofCta: 'Voir les preuves',
+      s1H: 'Une collection devant laquelle on passe.',
+      s1P1: "Les pièces sont là, la recherche est solide, la salle a été rénovée. Pourtant le visiteur moyen s'arrête huit secondes puis continue. Le récit reste dans la vitrine, pas dans la tête de celui qui passe.",
+      s1P2: "Nous construisons un programme qui transforme le regard en expérience : quelle signification unique doit rester, dans quel ordre, et à quel moment de la visite.",
+      s1ImgAlt: "Schéma : des pièces en vitrine d'un côté, une visite qui reste de l'autre, avec un faisceau de lumière entre les deux.",
+      s1FigL: 'Des pièces en vitrine', s1FigR: 'Une visite qui reste',
+      s1Pr1: 'Programme sur plusieurs salles, construit autour d’une signification centrale par ensemble.',
+      s1Pr2: 'temps de présence avant / après — chiffre à fournir',
+      s1Pr2b: 'Gallo-Romeins Museum et Mercator, avec Visit Flanders — des programmes pluriannuels sur salles, sites et canaux numériques.',
+      s1Pr3: "chiffres de visite depuis l'ouverture — à fournir",
+      s2H: 'Des résultats qui ne quittent jamais le champ.',
+      s2P1: "Le travail est évalué par les pairs, la méthodologie tient, les résultats comptent. Hors d'un cercle restreint, cela reste illisible — alors que les financeurs, les décideurs et le public devraient précisément comprendre.",
+      s2P2: "Nous traduisons sans aplatir : la méthodologie reste visible, la nuance intacte, mais l'ordre suit ce dont un profane a besoin pour entrer.",
+      s2ImgAlt: "Schéma : un article publié d'un côté, un public qui comprend de l'autre, avec un faisceau de lumière entre les deux.",
+      s2FigL: 'Un article publié', s2FigR: 'Un public qui comprend',
+      s2Pr1: "Méthode fixe : trois à cinq entretiens avec les chercheurs eux-mêmes, puis un document de programme.",
+      s2Pr2: "Chaque simplification est soumise au responsable du contenu avant d'être définitive.",
+      s2Pr3: 'cas de référence en recherche — à fournir',
+      s3H: 'Un récit qui doit défendre un budget en interne.',
+      s3P1: "Le récit de durabilité ou d'innovation existe, mais il vit dans un rapport annuel et une présentation. Ce qui manque au comité, c'est le rendement — et sans ce chiffre, cela reste sympathique plutôt que défendable.",
+      s3P2: "Nous construisons le dossier avec vous : ce qui doit atteindre quel public, à quel coût par contact, et comment vous le défendez en interne.",
+      s3ImgAlt: "Schéma : une diapositive d'un côté, un budget défendu de l'autre, avec un faisceau de lumière entre les deux.",
+      s3FigL: 'Une diapositive', s3FigR: 'Un budget défendu',
+      s3Pr1: 'Danone — une même expérience, plusieurs sites et événements dans plusieurs pays, déployée sans repartir de zéro chaque fois.',
+      s3Pr2: 'coût par contact — chiffre à fournir',
+      s3Pr3: 'Nous travaillons également sur un projet dans le secteur de la construction. Plus de détails bientôt.',
+      methodH: "D'abord le sens. Ensuite le programme. Le moyen en dernier.",
+      m1L: '01 — Le sens', m1H: "Qu'est-ce qui reste ?",
+      m1P: "Quel message unique, pour quel public, à quel moment. Trois à cinq entretiens avec celles et ceux qui connaissent le contenu.",
+      m2L: '02 — Le programme', m2H: 'Un plan pluriannuel, pas un projet.',
+      m2P: "Avec une mesure de départ, un rythme d'investissement et des indicateurs qui tiennent en interne. La mesure est dans la conception, pas dans le suivi.",
+      m3L: '03 — La réalisation', m3H: "Nous restons jusqu'à ce que cela tourne.",
+      m3P: "Production, accompagnement sur place et un débriefing chiffré. Un seul interlocuteur du début à la clôture.",
+      measureH: 'Trois questions dont nous nous rendons comptables.',
+      measureSub: "La portée et l'engagement disent peu séparément. Nous mesurons si les bonnes personnes sont venues, si elles sont revenues, et si elles ont amené quelqu'un.",
+      r1H: 'Le bon visiteur', r1P: "Non pas plus de visiteurs — ceux à qui votre récit était destiné. Défini avant toute construction.",
+      r1M: 'adéquation du public · coût par contact',
+      r2H: 'Le visiteur qui revient', r2P: "Une deuxième visite est le test honnête de la valeur de la première.",
+      r2M: 'taux de retour · occupation par créneau',
+      r3H: 'Le visiteur qui recommande', r3P: "Celui qui amène un collègue, une classe ou une famille fait voyager le récit sans vous.",
+      r3M: 'part de recommandation · bouche-à-oreille',
+      startH: 'Commencez par une exploration, pas par une proposition.',
+      startSub: "Avant toute réalisation, il est clair ce qui doit atteindre son public, auprès de qui, et à quoi vous le mesurerez. Y compris si la réponse est : pas maintenant.",
+      d1: 'Trois à cinq entretiens avec vos propres équipes.',
+      d2: 'Un document de programme sur votre table en deux semaines.',
+      d3: "Une mesure de départ et des indicateurs dans le langage de votre conseil ou de votre direction.",
+      d4: "Une recommandation explicite : avancer ou attendre. Le document vous reste acquis.",
+      navPeople: 'Qui vous accompagne',
+      visitLabel: 'Commencez ici',
+      visitH: 'Venez en voir un en activité.',
+      visitP: "Nous préférons vous recevoir sur un programme en activité que dans une salle de réunion. Vous voyez ce que les visiteurs retiennent — et vous le leur demandez vous-même.",
+      visitCta: 'Demander une visite',
+      peopleH: 'Deux interlocuteurs fixes. Une équipe que nous composons.',
+      peopleSub: "Une direction senior à la journée, pas un effectif. Cederik et Sam pilotent chaque programme — et font venir exactement les spécialistes qu'il exige.",
+      profileLink: 'Profil sur LinkedIn',
+      teamLabel: "L'équipe",
+      teamH: 'Les profils dont le programme a besoin, nous les trouvons.',
+      teamP: "Tout ne passe pas par nous deux. Chaque programme est doté selon ce qu'il exige réellement — nous savons qui est bon dans ce métier, nous les engageons directement, et nous tenons le budget.",
+      role1H: 'Directeur créatif',
+      role1P: "Juge la dimension artistique. Cela vaut-il une heure de la vie d'un visiteur ?",
+      role2H: 'Chef de programme',
+      role2P: 'Tient le plan pluriannuel dans les délais, le budget et le message.',
+      role3H: 'Gestion de lieu et d’événement',
+      role3P: "Fait fonctionner l'espace, le flux et la journée même — de l'ouverture au dernier visiteur.",
+      role4H: 'Support technique',
+      role4P: "Sur place ou à distance, aussi longtemps que le programme tourne.",
+      teamClose: "Vous ne portez jamais une équipe fixe qu'il faut continuer à payer. Vous obtenez les rôles dont le programme a besoin, le temps qu'il en a besoin.",
+      p1Name: 'Cederik', p1Role: 'Fondateur & CEO',
+      p1Bio: "Construit le programme et le dossier d'investissement. Présent au conseil quand il faut le défendre.",
+      p1Alt: 'portrait — Cederik',
+      p2Name: 'Sam', p2Role: 'General Manager',
+      p2Bio: "Mène l'exploration et la réalisation. Un seul interlocuteur, du premier entretien au débriefing.",
+      p2Alt: 'portrait — Sam',
+      peopleNote: 'noms de famille, intitulés, portraits et liens LinkedIn personnels à confirmer',
+      visitNote: "Nous organisons des visites sur l'un de nos projets en cours — lequel dépend de ce qui tourne et de ce qui correspond à votre question.",
+      formH: 'Nous contacter', formSub: "Dites-nous brièvement ce qui doit atteindre son public, et auprès de qui. Nous répondons sous deux jours ouvrables.",
+      fName: 'Nom', fOrg: 'Organisation', fEmail: 'E-mail', fMsg: 'Que doit-on faire passer, et auprès de qui ?',
+      fSubmit: 'Envoyer',
+      formNote: "Adressé à sam@executxr.com. Confirmez le destinataire et l'identifiant du formulaire HubSpot avant la mise en ligne.",
+      techLabel: 'Dernière couche',
+      techH: 'Là où la XR fait la différence — et là où non.',
+      techP: "Le moyen vient en dernier. Souvent il est immersif, parce que profondeur et portée s'y rejoignent : une expérience intense pour le visiteur et transportable entre lieux. Parfois la réponse est une exposition, un film ou une table de discussion. Nous n'avons aucun intérêt dans un seul résultat.",
+      tech1H: 'Infrastructure', tech1P: "Déploiement sur plusieurs lieux avec gestion à distance, pour changer de contenu sans reconstruire. Sur les sites et événements partagés, nous travaillons avec Hydra.",
+      tech2H: 'Des personnes sur place', tech2P: "Des accompagnateurs qui transforment le matériel en visite, et un chef de projet qui coordonne tout jusqu'au débriefing.",
+      meetH: 'Réservez directement un créneau',
+      meetP: "Trente minutes, le mardi ou le jeudi après-midi. Directement dans l'agenda — sans échange de mails préalable.",
+      meetSlot: 'HubSpot Meetings — intégration à placer ici',
+      meetNote: 'Mar + jeu, 14h30–18h · 30 min · confirmation et invitation agenda envoyées automatiquement',
+      linkedin: 'LinkedIn',
+      sent: 'Merci — votre message est prêt. Reliez le formulaire à HubSpot avant la mise en ligne.'
     }
+  };
 
-    function closePopup() {
-        document.getElementById('comingSoonOverlay').style.display = 'none';
-    }
+  var state = { lang: 'en', sent: false };
 
-    function redirectToPage(url, pageExists) {
-        if (pageExists) {
-            window.open(url, '_blank');
-        } else {
-            showPopup();
-        }
-    }
-
-    function toggleNav() {
-        var mobileNav = document.getElementById('mobile-nav');
-        var desktopNav = document.getElementById('desktop-nav');
-
-        if (window.innerWidth <= 768) {
-            // Mobile view
-            mobileNav.style.display = (mobileNav.style.display === 'none' || mobileNav.style.display === '') ? 'block' : 'none';
-            desktopNav.style.display = 'none'; // Hide desktop nav
-        } else {
-            // Desktop view
-            desktopNav.style.display = (desktopNav.style.display === 'none' || desktopNav.style.display === '') ? 'block' : 'none';
-            mobileNav.style.display = 'none'; // Hide mobile nav
-        }
-    }
-
-    // Add this event listener to your navigation links
-    document.querySelectorAll('#mobile-nav a').forEach(link => {
-        link.addEventListener('click', function() {
-            toggleNav(); // Close the navigation menu when a link is clicked
-        });
+  function applyLang(lang) {
+    var t = COPY[lang] || COPY.en;
+    state.lang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (t[key] != null) el.textContent = t[key];
     });
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
+    document.querySelectorAll('[data-i18n-label]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-label');
+      if (t[key] != null) el.setAttribute('aria-label', t[key]);
     });
+    document.querySelectorAll('.lang-btn').forEach(function (btn) {
+      btn.setAttribute('aria-pressed', String(btn.getAttribute('data-lang') === lang));
+    });
+    document.getElementById('form-status').textContent = state.sent ? t.sent : '';
+  }
+
+  function setLang(lang) {
+    if (!COPY[lang]) return;
+    try { window.localStorage.setItem('executxr-site-lang', lang); } catch (e) {}
+    applyLang(lang);
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () { setLang(btn.getAttribute('data-lang')); });
+  });
+
+  var initialLang = 'en';
+  try {
+    var saved = window.localStorage.getItem('executxr-site-lang');
+    if (saved && COPY[saved]) initialLang = saved;
+  } catch (e) {}
+  applyLang(initialLang);
+
+  document.querySelectorAll('[data-proof-toggle]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var key = btn.getAttribute('data-proof-toggle');
+      var panel = document.getElementById('proof-' + key.replace('s', ''));
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      if (panel) panel.hidden = expanded;
+    });
+  });
+
+  var contactForm = document.getElementById('contact-form');
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    state.sent = true;
+    document.getElementById('form-status').textContent = COPY[state.lang].sent;
+  });
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reduceMotion) {
+    var revealItems = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting && entry.boundingClientRect.top >= 0) return;
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+    var sweep = function () {
+      revealItems.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < (window.innerHeight || 0)) { el.classList.add('is-visible'); io.unobserve(el); }
+      });
+    };
+    revealItems.forEach(function (el) { io.observe(el); });
+    sweep();
+    window.addEventListener('hashchange', sweep);
+    window.addEventListener('load', sweep);
+    window.addEventListener('scroll', sweep, { passive: true });
+
+    var rays = document.querySelector('[data-beam-rays]');
+    var line = document.querySelector('[data-beam-line]');
+    if (rays && line) {
+      var queued = false;
+      var onScroll = function () {
+        if (queued) return;
+        queued = true;
+        window.requestAnimationFrame(function () {
+          queued = false;
+          var r = rays.getBoundingClientRect();
+          var vh = window.innerHeight || 1;
+          var p = Math.min(1, Math.max(0, 1 - (r.top / vh)));
+          rays.style.opacity = String(0.45 + p * 0.55);
+          line.style.boxShadow = '0 0 ' + (34 + p * 26).toFixed(0) + 'px ' + (8 + p * 8).toFixed(0) + 'px rgba(194,91,63,' + (0.26 + p * 0.2).toFixed(2) + ')';
+        });
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+  } else {
+    document.querySelectorAll('[data-reveal]').forEach(function (el) { el.classList.add('is-visible'); });
+  }
+})();
 </script>
 </body>
 </html>
