@@ -222,7 +222,6 @@
   .role-card__link { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--slate-light); border-bottom: 1px solid var(--border-dark-warm); padding-bottom: 2px; }
   .role-card__link:hover { color: var(--paper); border-color: var(--slate-light); }
   .team-close { font-size: 18px; line-height: 1.6; color: var(--text-on-dark); max-width: 54ch; margin: 32px 0 0; }
-  .founders-note { font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--muted-on-dark); margin: 26px 0 0; }
 
   /* Measure */
   .section--measure { background: var(--ink-deep); color: var(--paper); padding: 120px 0; }
@@ -255,13 +254,9 @@
   .visit-card__cta { display: block; background: var(--ink); color: var(--paper); padding: 18px; text-align: center; font-size: 16px; font-weight: 600; }
   .visit-card__cta:hover { background: var(--paper); color: var(--ink); }
   .visit-card__note { font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--paper); margin: 22px 0 0; }
-  .meet-card, .form-card { background: var(--ink); color: var(--paper); padding: 44px; }
-  .meet-card__h3, .form-card__h3 { font-family: var(--font-display); font-size: 30px; line-height: 1.15; font-weight: 600; margin: 0 0 12px; }
-  .meet-card__p, .form-card__sub { font-size: 16px; line-height: 1.6; color: var(--text-on-dark); margin: 0 0 28px; }
-  .form-card__sub { margin-bottom: 32px; }
-  .meet-card__embed { background: var(--surface-dark); border: 1px solid var(--border-dark-warm); min-height: 600px; margin-bottom: 16px; overflow: hidden; }
-  .meet-card__embed .meetings-iframe-container iframe { border: 0; width: 100%; }
-  .meet-card__note { font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--muted-on-dark); margin: 0; }
+  .form-card { background: var(--ink); color: var(--paper); padding: 44px; }
+  .form-card__h3 { font-family: var(--font-display); font-size: 30px; line-height: 1.15; font-weight: 600; margin: 0 0 12px; }
+  .form-card__sub { font-size: 16px; line-height: 1.6; color: var(--text-on-dark); margin: 0 0 32px; }
   .form-embed { background: var(--paper); padding: 24px; margin-bottom: 4px; }
   .form-footer { margin: 28px 0 0; border-top: 1px solid var(--border-dark); padding-top: 22px; font-family: var(--font-mono); font-size: 12px; line-height: 1.8; color: var(--muted-on-dark); }
   .form-footer a { color: var(--muted-on-dark); }
@@ -306,7 +301,7 @@
     .hero-h1 { font-size: 40px; }
     .core-line { font-size: 20px; }
     .section-h2, .paths-h2 { font-size: 30px; }
-    .path-h3, .method-col__h3, .measure-card__h3, .meet-card__h3, .form-card__h3 { font-size: 24px; }
+    .path-h3, .method-col__h3, .measure-card__h3, .form-card__h3 { font-size: 24px; }
     .container p, .container span, .container li, .container a { max-width: none; }
   }
 </style>
@@ -533,7 +528,6 @@
             </div>
           </div>
           <p class="team-close" data-i18n="teamClose">You never carry a fixed team you have to keep paying for. You get the roles the programme needs, for as long as it needs them.</p>
-          <p class="founders-note" data-i18n="foundersNote">A separate page about the people behind Executxr is in preparation.</p>
         </div>
       </div>
     </div>
@@ -592,22 +586,13 @@
           <p class="visit-card__label" data-i18n="visitLabel">Start here</p>
           <h3 class="visit-card__h3" data-i18n="visitH">Come and see one running.</h3>
           <p class="visit-card__p" data-i18n="visitP">We would rather receive you at a live programme than in a meeting room. You see what visitors take home, and you can ask them yourself.</p>
-          <a href="mailto:hello@executxr.com?subject=Visit%20a%20running%20programme" class="visit-card__cta" data-i18n="visitCta">Request a visit</a>
+          <a href="#hs-contact-form" class="visit-card__cta" data-i18n="visitCta">Request a visit</a>
           <p class="visit-card__note" data-i18n="visitNote">We host visits at one of our live projects. Which one depends on what is running and what fits your question.</p>
-        </div>
-
-        <div class="meet-card">
-          <h3 class="meet-card__h3" data-i18n="meetH">Book a slot directly</h3>
-          <p class="meet-card__p" data-i18n="meetP">Thirty minutes, Tuesday or Thursday afternoon. Straight into the diary, no exchange of emails first.</p>
-          <div class="meet-card__embed">
-            <div class="meetings-iframe-container" data-src="https://meetings-eu1.hubspot.com/sam117?embed=true"></div>
-          </div>
-          <p class="meet-card__note" data-i18n="meetNote">Tue and Thu, 14:30 to 18:00 / 30 min / confirmation and calendar invite sent automatically</p>
         </div>
 
         <div class="form-card">
           <h3 class="form-card__h3" data-i18n="formH">Which complex message do you want to bring to which audience?</h3>
-          <p class="form-card__sub" data-i18n="formSub">Broad or specific. Tell us the message, we will find the route to the audience.</p>
+          <p class="form-card__sub" data-i18n="formSub">Broad or specific, including a visit request. Tell us the message, we will find the route to the audience.</p>
           <div class="form-embed">
             <div id="hs-contact-form"></div>
           </div>
@@ -666,7 +651,6 @@
   </div>
 </footer>
 
-<script src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
 <script src="https://js-eu1.hsforms.net/forms/embed/v2.js"></script>
 <script>
   if (window.hbspt) {
@@ -751,7 +735,6 @@
       role5P: 'Our technology partner makes sure the experience runs just as smoothly everywhere, without the venue needing heavy equipment of its own.',
       role5Link: 'More about Hydra',
       teamClose: 'You never carry a fixed team you have to keep paying for. You get the roles the programme needs, for as long as it needs them.',
-      foundersNote: 'A separate page about the people behind Executxr is in preparation.',
       measureH: 'Three questions we hold ourselves to.',
       measureSub: 'Reach and engagement mean little on their own. We measure whether the right people came, whether they came back, and whether they brought someone.',
       r1H: 'The right visitor', r1P: 'Not more visitors. The ones your message was meant for, defined before anything is built.',
@@ -772,11 +755,8 @@
       visitP: 'We would rather receive you at a live programme than in a meeting room. You see what visitors take home, and you can ask them yourself.',
       visitCta: 'Request a visit',
       visitNote: 'We host visits at one of our live projects. Which one depends on what is running and what fits your question.',
-      meetH: 'Book a slot directly',
-      meetP: 'Thirty minutes, Tuesday or Thursday afternoon. Straight into the diary, no exchange of emails first.',
-      meetNote: 'Tue and Thu, 14:30 to 18:00 / 30 min / confirmation and calendar invite sent automatically',
       formH: 'Which complex message do you want to bring to which audience?',
-      formSub: 'Broad or specific. Tell us the message, we will find the route to the audience.',
+      formSub: 'Broad or specific, including a visit request. Tell us the message, we will find the route to the audience.',
       fName: 'Name', fOrg: 'Organisation', fEmail: 'Email', fMsg: 'What should land, and with whom?',
       fSubmit: 'Send',
       formNote: 'Handled by HubSpot. We reply within two working days.',
@@ -858,7 +838,6 @@
       role5P: 'Onze technologiepartner zorgt dat de ervaring overal even vlot en betrouwbaar draait, zonder dat de locatie zelf zware apparatuur nodig heeft.',
       role5Link: 'Meer over Hydra',
       teamClose: 'U draagt nooit een vast team dat u moet blijven betalen. U krijgt de rollen die het programma nodig heeft, zolang het ze nodig heeft.',
-      foundersNote: 'Een aparte pagina over de mensen achter Executxr is in voorbereiding.',
       measureH: 'Drie vragen waar wij ons aan houden.',
       measureSub: 'Bereik en engagement zeggen los van elkaar weinig. Wij meten of de juiste mensen kwamen, of ze terugkwamen, en of ze iemand meebrachten.',
       r1H: 'De juiste bezoeker', r1P: 'Niet méér bezoekers. Die voor wie uw boodschap bedoeld was, vastgelegd voor er iets gebouwd wordt.',
@@ -879,11 +858,8 @@
       visitP: 'Wij ontvangen u liever bij een lopend programma dan in een vergaderzaal. U ziet wat bezoekers meenemen, en u vraagt het hun zelf.',
       visitCta: 'Bezoek aanvragen',
       visitNote: 'Wij organiseren bezoeken bij één van onze lopende projecten. Welk project hangt af van wat er draait en wat bij uw vraag past.',
-      meetH: 'Boek meteen een moment',
-      meetP: 'Dertig minuten, dinsdag- of donderdagnamiddag. Rechtstreeks in de agenda, geen mailwisseling vooraf.',
-      meetNote: 'Di en do, 14u30 tot 18u / 30 min / bevestiging en agenda-uitnodiging gaan automatisch',
       formH: 'Welke complexe boodschap wil je naar welk publiek brengen?',
-      formSub: 'Breed of specifiek. Vertel ons de boodschap, wij zoeken de weg naar het publiek.',
+      formSub: 'Breed of specifiek, inclusief een bezoekaanvraag. Vertel ons de boodschap, wij zoeken de weg naar het publiek.',
       fName: 'Naam', fOrg: 'Organisatie', fEmail: 'E-mail', fMsg: 'Wat moet landen, en bij wie?',
       fSubmit: 'Verzenden',
       formNote: 'Verwerkt via HubSpot. Wij antwoorden binnen twee werkdagen.',
@@ -965,7 +941,6 @@
       role5P: "Notre partenaire technologique veille à ce que l'expérience tourne partout avec la même fluidité, sans que le lieu ait besoin de son propre matériel lourd.",
       role5Link: 'En savoir plus sur Hydra',
       teamClose: "Vous ne portez jamais une équipe fixe qu'il faut continuer à payer. Vous obtenez les rôles dont le programme a besoin, le temps qu'il en a besoin.",
-      foundersNote: 'Une page distincte sur les personnes derrière Executxr est en préparation.',
       measureH: 'Trois questions dont nous nous rendons comptables.',
       measureSub: "La portée et l'engagement disent peu séparément. Nous mesurons si les bonnes personnes sont venues, si elles sont revenues, et si elles ont amené quelqu'un.",
       r1H: 'Le bon visiteur', r1P: 'Non pas plus de visiteurs. Ceux à qui votre message était destiné, définis avant toute construction.',
@@ -986,11 +961,8 @@
       visitP: "Nous préférons vous recevoir sur un programme en activité que dans une salle de réunion. Vous voyez ce que les visiteurs retiennent, et vous le leur demandez vous-même.",
       visitCta: 'Demander une visite',
       visitNote: "Nous organisons des visites sur l'un de nos projets en cours. Lequel dépend de ce qui tourne et de ce qui correspond à votre question.",
-      meetH: 'Réservez directement un créneau',
-      meetP: "Trente minutes, le mardi ou le jeudi après-midi. Directement dans l'agenda, sans échange de mails préalable.",
-      meetNote: 'Mar et jeu, 14h30 à 18h / 30 min / confirmation et invitation agenda envoyées automatiquement',
       formH: 'Quel message complexe voulez-vous porter vers quel public ?',
-      formSub: 'Large ou spécifique. Dites-nous le message, nous trouvons la route vers le public.',
+      formSub: 'Large ou spécifique, y compris une demande de visite. Dites-nous le message, nous trouvons la route vers le public.',
       fName: 'Nom', fOrg: 'Organisation', fEmail: 'E-mail', fMsg: 'Que doit-on faire passer, et auprès de qui ?',
       fSubmit: 'Envoyer',
       formNote: "Traité via HubSpot. Nous répondons sous deux jours ouvrés.",
