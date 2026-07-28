@@ -262,14 +262,7 @@
   .meet-card__embed { background: var(--surface-dark); border: 1px solid var(--border-dark-warm); min-height: 600px; margin-bottom: 16px; overflow: hidden; }
   .meet-card__embed .meetings-iframe-container iframe { border: 0; width: 100%; }
   .meet-card__note { font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--muted-on-dark); margin: 0; }
-  .form-grid { display: grid; gap: 22px; }
-  .form-field { display: grid; gap: 8px; }
-  .form-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-on-dark); }
-  .form-input, .form-textarea { background: var(--surface-dark); border: 1px solid var(--border-dark-warm); color: var(--paper); font-family: var(--font-body); font-size: 16px; padding: 14px 16px; }
-  .form-textarea { resize: vertical; }
-  .form-submit { background: var(--seal); border: 0; color: var(--paper); font-family: var(--font-body); font-size: 16px; font-weight: 600; padding: 18px; cursor: pointer; }
-  .form-submit:hover { background: var(--seal-deep); }
-  .form-status { margin: 0; font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--muted-on-dark); min-height: 1.7em; }
+  .form-embed { background: var(--paper); padding: 24px; margin-bottom: 4px; }
   .form-footer { margin: 28px 0 0; border-top: 1px solid var(--border-dark); padding-top: 22px; font-family: var(--font-mono); font-size: 12px; line-height: 1.8; color: var(--muted-on-dark); }
   .form-footer a { color: var(--muted-on-dark); }
   .form-footer a:hover { color: var(--paper); }
@@ -615,27 +608,10 @@
         <div class="form-card">
           <h3 class="form-card__h3" data-i18n="formH">Which complex message do you want to bring to which audience?</h3>
           <p class="form-card__sub" data-i18n="formSub">Broad or specific. Tell us the message, we will find the route to the audience.</p>
-          <form class="form-grid" id="contact-form">
-            <div class="form-field">
-              <label for="f-name" class="form-label" data-i18n="fName">Name</label>
-              <input id="f-name" name="name" type="text" autocomplete="name" required class="form-input">
-            </div>
-            <div class="form-field">
-              <label for="f-org" class="form-label" data-i18n="fOrg">Organisation</label>
-              <input id="f-org" name="organisation" type="text" autocomplete="organization" class="form-input">
-            </div>
-            <div class="form-field">
-              <label for="f-email" class="form-label" data-i18n="fEmail">Email</label>
-              <input id="f-email" name="email" type="email" autocomplete="email" required class="form-input">
-            </div>
-            <div class="form-field">
-              <label for="f-msg" class="form-label" data-i18n="fMsg">What should land, and with whom?</label>
-              <textarea id="f-msg" name="message" rows="4" class="form-textarea"></textarea>
-            </div>
-            <button type="submit" class="form-submit" data-i18n="fSubmit">Send</button>
-            <p class="form-status" id="form-status" aria-live="polite"></p>
-          </form>
-          <p class="form-footer">hello@executxr.com<br><span data-i18n="formNote">Opens an email to hello@executxr.com. We reply within two working days.</span></p>
+          <div class="form-embed">
+            <div id="hs-contact-form"></div>
+          </div>
+          <p class="form-footer" data-i18n="formNote">Handled by HubSpot. We reply within two working days.</p>
         </div>
       </div>
     </div>
@@ -691,6 +667,17 @@
 </footer>
 
 <script src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+<script src="https://js-eu1.hsforms.net/forms/embed/v2.js"></script>
+<script>
+  if (window.hbspt) {
+    hbspt.forms.create({
+      region: 'eu1',
+      portalId: '25692968',
+      formId: '6025e8f6-452b-407d-b99f-daebe68a4809',
+      target: '#hs-contact-form'
+    });
+  }
+</script>
 <script>
 (function () {
   var COPY = {
@@ -792,7 +779,7 @@
       formSub: 'Broad or specific. Tell us the message, we will find the route to the audience.',
       fName: 'Name', fOrg: 'Organisation', fEmail: 'Email', fMsg: 'What should land, and with whom?',
       fSubmit: 'Send',
-      formNote: 'Opens an email to hello@executxr.com. We reply within two working days.',
+      formNote: 'Handled by HubSpot. We reply within two working days.',
       techLabel: 'Last layer',
       techH: 'Where XR makes the difference, and where it does not.',
       techP: 'The medium comes last. Often it is immersive, because depth and reach meet there: one experience, intense for the visitor and still able to travel between locations. Sometimes the answer is an exhibition, a film, or a table to sit around. We have no stake in one outcome.',
@@ -899,7 +886,7 @@
       formSub: 'Breed of specifiek. Vertel ons de boodschap, wij zoeken de weg naar het publiek.',
       fName: 'Naam', fOrg: 'Organisatie', fEmail: 'E-mail', fMsg: 'Wat moet landen, en bij wie?',
       fSubmit: 'Verzenden',
-      formNote: 'Opent een e-mail naar hello@executxr.com. Wij antwoorden binnen twee werkdagen.',
+      formNote: 'Verwerkt via HubSpot. Wij antwoorden binnen twee werkdagen.',
       techLabel: 'Laatste laag',
       techH: 'Waar XR het verschil maakt, en waar niet.',
       techP: 'Het middel komt als laatste. Vaak is dat immersief, omdat diepte en bereik daar samenvallen: één ervaring, intens voor de bezoeker en toch reisbaar tussen locaties. Soms is het antwoord een tentoonstelling, een film of een gesprekstafel. Wij hebben geen belang bij één uitkomst.',
@@ -1006,7 +993,7 @@
       formSub: 'Large ou spécifique. Dites-nous le message, nous trouvons la route vers le public.',
       fName: 'Nom', fOrg: 'Organisation', fEmail: 'E-mail', fMsg: 'Que doit-on faire passer, et auprès de qui ?',
       fSubmit: 'Envoyer',
-      formNote: "Ouvre un e-mail vers hello@executxr.com. Nous répondons sous deux jours ouvrés.",
+      formNote: "Traité via HubSpot. Nous répondons sous deux jours ouvrés.",
       techLabel: 'Dernière couche',
       techH: 'Là où la XR fait la différence, et là où non.',
       techP: "Le moyen vient en dernier. Souvent il est immersif, parce que profondeur et portée s'y rejoignent : une expérience intense pour le visiteur et transportable entre lieux. Parfois la réponse est une exposition, un film ou une table de discussion. Nous n'avons aucun intérêt dans un seul résultat.",
@@ -1042,7 +1029,6 @@
     document.querySelectorAll('.lang-btn').forEach(function (btn) {
       btn.setAttribute('aria-pressed', String(btn.getAttribute('data-lang') === lang));
     });
-    document.getElementById('form-status').textContent = state.sent ? t.sent : '';
   }
 
   function setLang(lang) {
@@ -1070,20 +1056,6 @@
       btn.setAttribute('aria-expanded', String(!expanded));
       if (panel) panel.hidden = expanded;
     });
-  });
-
-  var contactForm = document.getElementById('contact-form');
-  contactForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var name = document.getElementById('f-name').value;
-    var org = document.getElementById('f-org').value;
-    var email = document.getElementById('f-email').value;
-    var msg = document.getElementById('f-msg').value;
-    var body = 'Name: ' + name + '\nOrganisation: ' + org + '\nEmail: ' + email + '\n\n' + msg;
-    var mailto = 'mailto:hello@executxr.com?subject=' + encodeURIComponent('Message via executxr.com (' + state.lang + ')') + '&body=' + encodeURIComponent(body);
-    window.location.href = mailto;
-    state.sent = true;
-    document.getElementById('form-status').textContent = COPY[state.lang].sent;
   });
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
