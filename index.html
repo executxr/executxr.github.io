@@ -254,7 +254,8 @@
   .visit-card__cta { display: block; background: var(--ink); color: var(--paper); padding: 18px; text-align: center; font-size: 16px; font-weight: 600; }
   .visit-card__cta:hover { background: var(--paper); color: var(--ink); }
   .visit-card__note { font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--paper); margin: 22px 0 0; }
-  .form-card { background: var(--ink); color: var(--paper); padding: 44px; }
+  .form-card { background: var(--ink); color: var(--paper); padding: 44px; outline: 3px solid transparent; outline-offset: 6px; transition: outline-color .25s ease; }
+  .form-card.is-highlighted { outline-color: var(--seal-light); }
   .form-card__h3 { font-family: var(--font-display); font-size: 30px; line-height: 1.15; font-weight: 600; margin: 0 0 12px; }
   .form-card__sub { font-size: 16px; line-height: 1.6; color: var(--text-on-dark); margin: 0 0 32px; }
   .form-embed { background: var(--paper); padding: 24px; margin-bottom: 4px; }
@@ -840,11 +841,11 @@
       teamClose: 'U draagt nooit een vast team dat u moet blijven betalen. U krijgt de rollen die het programma nodig heeft, zolang het ze nodig heeft.',
       measureH: 'Drie vragen waar wij ons aan houden.',
       measureSub: 'Bereik en engagement zeggen los van elkaar weinig. Wij meten of de juiste mensen kwamen, of ze terugkwamen, en of ze iemand meebrachten.',
-      r1H: 'De juiste bezoeker', r1P: 'Niet méér bezoekers. Die voor wie uw boodschap bedoeld was, vastgelegd voor er iets gebouwd wordt.',
+      r1H: 'De relevante bezoeker', r1P: 'Niet méér bezoekers. Die voor wie uw boodschap bedoeld was, vastgelegd voor er iets gebouwd wordt.',
       r1M: 'doelgroepfit / kost per contactmoment',
-      r2H: 'De terugkerende bezoeker', r2P: 'Een tweede bezoek is de eerlijke test of het eerste iets betekende.',
+      r2H: 'De retourbezoeker', r2P: 'Een tweede bezoek is de eerlijke test of het eerste iets betekende.',
       r2M: 'terugkeergraad / bezetting per tijdslot',
-      r3H: 'De doorverwijzende bezoeker', r3P: 'Wie een collega, een klas of een gezin meebrengt, laat de boodschap reizen zonder u.',
+      r3H: 'De refererende bezoeker', r3P: 'Wie een collega, een klas of een gezin meebrengt, laat de boodschap reizen zonder u.',
       r3M: 'aandeel doorverwijzing / mond-tot-mond',
       measureNote: 'Wij werken ook met een conceptuele maat: engagementtijd maal bereik, gedeeld door kost, pro rata over events en jaren en vergeleken met betaalde media. Een manier om mediawaarde te denken, geen harde ROI-belofte.',
       startH: 'Begin met een verkenning, niet met een voorstel.',
@@ -943,11 +944,11 @@
       teamClose: "Vous ne portez jamais une équipe fixe qu'il faut continuer à payer. Vous obtenez les rôles dont le programme a besoin, le temps qu'il en a besoin.",
       measureH: 'Trois questions dont nous nous rendons comptables.',
       measureSub: "La portée et l'engagement disent peu séparément. Nous mesurons si les bonnes personnes sont venues, si elles sont revenues, et si elles ont amené quelqu'un.",
-      r1H: 'Le bon visiteur', r1P: 'Non pas plus de visiteurs. Ceux à qui votre message était destiné, définis avant toute construction.',
+      r1H: 'Le visiteur recherché', r1P: 'Non pas plus de visiteurs. Ceux à qui votre message était destiné, définis avant toute construction.',
       r1M: 'adéquation du public / coût par contact',
-      r2H: 'Le visiteur qui revient', r2P: 'Une deuxième visite est le test honnête de la valeur de la première.',
+      r2H: 'Le visiteur récurrent', r2P: 'Une deuxième visite est le test honnête de la valeur de la première.',
       r2M: 'taux de retour / occupation par créneau',
-      r3H: 'Le visiteur qui recommande', r3P: 'Celui qui amène un collègue, une classe ou une famille fait voyager le message sans vous.',
+      r3H: 'Le visiteur référent', r3P: 'Celui qui amène un collègue, une classe ou une famille fait voyager le message sans vous.',
       r3M: 'part de recommandation / bouche-à-oreille',
       measureNote: "Nous utilisons aussi une mesure conceptuelle : le temps d'engagement multiplié par la portée, divisé par le coût, réparti sur plusieurs événements et années et comparé aux médias payants. Une façon de penser la valeur média, pas une promesse de ROI.",
       startH: 'Commencez par une exploration, pas par une proposition.',
@@ -1029,6 +1030,17 @@
       if (panel) panel.hidden = expanded;
     });
   });
+
+  var formCard = document.querySelector('.form-card');
+  var highlightFormCard = function () {
+    if (!formCard) return;
+    formCard.classList.add('is-highlighted');
+    window.setTimeout(function () { formCard.classList.remove('is-highlighted'); }, 1800);
+  };
+  document.querySelectorAll('a[href="#hs-contact-form"]').forEach(function (link) {
+    link.addEventListener('click', highlightFormCard);
+  });
+  if (window.location.hash === '#hs-contact-form') highlightFormCard();
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
