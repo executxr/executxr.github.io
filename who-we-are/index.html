@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who we are — Executxr</title>
+<meta name="description" content="Meet the core team behind Executxr, and the network of specialists we bring in for every experience programme.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://executxr.com/who-we-are/">
+<meta property="og:title" content="Who we are — Executxr">
+<meta property="og:description" content="Meet the core team behind Executxr, and the network of specialists we bring in for every experience programme.">
+<meta property="og:image" content="https://executxr.com/img/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1C1B1A;
+    --ink-deep: #141312;
+    --paper: #F2EFE9;
+    --surface-dark: #262322;
+    --border-dark: #3A3634;
+    --border-dark-warm: #4A4543;
+    --seal: #B23B22;
+    --seal-deep: #8F2E1A;
+    --seal-light: #D9694A;
+    --slate: #3A5A63;
+    --slate-light: #7FA6B0;
+    --text-on-dark: #C9C4BB;
+    --muted-on-dark: #A39D93;
+    --muted-on-light: #57534C;
+    --hairline: #D5CFC4;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Public Sans', Helvetica, Arial, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); }
+  body { font-family: var(--font-body); color: var(--ink); -webkit-font-smoothing: antialiased; text-wrap: pretty; line-height: 1.5; }
+  h1, h2, h3, h4 { text-wrap: balance; }
+  a { color: var(--slate); text-decoration: none; transition: color .18s ease, background-color .18s ease, border-color .18s ease; }
+  a:hover { color: var(--ink); }
+  :focus-visible { outline: 3px solid var(--seal-light); outline-offset: 3px; }
+  ::selection { background: var(--seal); color: var(--paper); }
+  button { font-family: inherit; }
+
+  .skip-link { position: absolute; left: -9999px; top: 8px; background: var(--seal); color: var(--paper); padding: 12px 18px; font-size: 15px; font-weight: 600; z-index: 80; }
+  .skip-link:focus { left: 16px; }
+
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 56px; }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 40px; height: 80px; }
+  .split-header { display: grid; grid-template-columns: 200px 1fr; gap: 56px; }
+  .multi-grid { display: grid; gap: 56px; }
+  .multi-grid--2 { grid-template-columns: repeat(2, 1fr); }
+
+  .site-header { position: sticky; top: 0; z-index: 40; background: var(--ink); color: var(--paper); border-bottom: 1px solid var(--border-dark); }
+  .wordmark { color: var(--paper); font-family: var(--font-display); font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+  .nav { display: flex; gap: 32px; align-items: center; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .nav a { color: var(--muted-on-dark); }
+  .nav a:hover, .nav a:focus-visible, .nav a[aria-current="page"] { color: var(--paper); }
+  .header-right { display: flex; align-items: center; gap: 16px; }
+  .lang-switch { display: flex; border: 1px solid var(--border-dark-warm); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; }
+  .lang-btn { width: 46px; background: transparent; border: 0; border-left: 1px solid var(--border-dark-warm); color: var(--paper); font: inherit; letter-spacing: inherit; padding: 11px 0; cursor: pointer; position: relative; }
+  .lang-btn:first-child { border-left: 0; }
+  .lang-underline { position: absolute; left: 8px; right: 8px; bottom: 4px; height: 2px; background: var(--seal-light); opacity: 0; }
+  .lang-btn[aria-pressed="true"] .lang-underline { opacity: 1; }
+  .lang-switch--footer .lang-btn { width: 42px; color: var(--muted-on-dark); padding: 9px 0; }
+  .lang-switch--footer .lang-btn[aria-pressed="true"] { color: var(--paper); }
+  .nav-cta { background: var(--seal); color: var(--paper); padding: 14px 22px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+  .nav-cta:hover { background: var(--seal-deep); color: var(--paper); }
+
+  .section--intro { background: var(--ink); color: var(--paper); padding: 120px 0; }
+  .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--seal-light); margin: 0 0 32px; }
+  .intro-h1 { font-family: var(--font-display); font-size: 68px; line-height: 1.05; letter-spacing: -0.026em; font-weight: 700; margin: 0 0 32px; max-width: 18ch; }
+  .intro-p { font-size: 22px; line-height: 1.55; color: var(--text-on-dark); max-width: 62ch; margin: 0; }
+
+  .section--profiles { background: var(--paper); color: var(--ink); padding: 120px 0; }
+  .profile-card { display: grid; grid-template-rows: auto 1fr; gap: 0; border-top: 1px solid var(--hairline); padding-top: 40px; }
+  .profile-card__photo { aspect-ratio: 4/5; overflow: hidden; background: var(--ink-deep); margin-bottom: 28px; }
+  .profile-card__photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.94) contrast(1.02); }
+  .profile-card__name { font-family: var(--font-display); font-size: 32px; line-height: 1.15; font-weight: 600; margin: 0 0 6px; }
+  .profile-card__role { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--seal); margin: 0 0 20px; }
+  .profile-card__bio { font-size: 17px; line-height: 1.65; color: var(--muted-on-light); margin: 0 0 20px; }
+  .profile-card__link { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--slate); border-bottom: 1px solid var(--hairline); padding-bottom: 2px; }
+  .profile-card__link:hover { color: var(--ink); border-color: var(--seal); }
+
+  .team-block { background: var(--ink); color: var(--paper); padding: 120px 0; }
+  .team-block .split-header { align-items: start; }
+  .team-block-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate-light); margin: 0; padding-top: 8px; }
+  .team-block-p { font-size: 20px; line-height: 1.6; color: var(--text-on-dark); max-width: 60ch; margin: 0; }
+
+  .section--vision { background: var(--ink-deep); color: var(--paper); padding: 120px 0; }
+  .vision-h2 { font-family: var(--font-display); font-size: 42px; line-height: 1.12; letter-spacing: -0.022em; font-weight: 600; margin: 0 0 26px; max-width: 22ch; }
+  .vision-p { font-size: 20px; line-height: 1.6; color: var(--text-on-dark); max-width: 64ch; margin: 0; }
+
+  .section--credibility { background: var(--paper); color: var(--ink); padding: 76px 0; border-bottom: 1px solid var(--hairline); }
+  .credibility-strip { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.04em; color: var(--muted-on-light); line-height: 2; margin: 0; }
+
+  .section--back { background: var(--paper); padding: 64px 0 0; text-align: center; }
+  .back-link { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); border-bottom: 1px solid var(--hairline); padding-bottom: 3px; }
+  .back-link:hover { color: var(--ink); border-color: var(--seal); }
+
+  .site-footer { background: var(--ink); color: var(--paper); padding: 76px 0 60px; border-top: 1px solid var(--border-dark); }
+  .site-footer .bar { height: auto; align-items: flex-end; }
+  .footer-wordmark { font-family: var(--font-display); font-size: 38px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 12px; }
+  .footer-core { font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--muted-on-dark); margin: 0; max-width: 34ch; }
+  .footer-links { display: flex; gap: 56px; align-items: flex-end; font-family: var(--font-mono); font-size: 13px; color: var(--muted-on-dark); flex-wrap: wrap; }
+  .footer-links__group { display: grid; gap: 10px; }
+  .footer-links a { color: var(--muted-on-dark); }
+  .footer-links a:hover, .footer-links a:focus-visible { color: var(--paper); }
+
+  [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.16,.84,.3,1), transform .7s cubic-bezier(.16,.84,.3,1); }
+  [data-reveal].is-visible { opacity: 1; transform: none; }
+
+  @media (max-width: 1100px) {
+    .container { padding-left: 32px; padding-right: 32px; }
+    .bar { height: auto; flex-wrap: wrap; padding: 14px 0 16px; gap: 18px; }
+    .bar a, .bar button { white-space: nowrap; }
+    .nav { flex-wrap: wrap; row-gap: 12px; }
+    .split-header, .multi-grid--2 { grid-template-columns: 1fr !important; gap: 36px; }
+  }
+  @media (max-width: 760px) {
+    .container { padding-left: 22px; padding-right: 22px; }
+    .bar { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .section--intro, .section--profiles, .team-block, .section--vision, .section--credibility { padding-top: 64px !important; padding-bottom: 64px !important; }
+    .intro-h1 { font-size: 36px; }
+    .vision-h2 { font-size: 28px; }
+    .container p, .container span, .container a { max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link" data-i18n="skip">Skip to content</a>
+
+<header class="site-header">
+  <div class="container bar">
+    <a href="../index.html#top" class="wordmark">executxr</a>
+    <nav class="nav" aria-label="Main navigation" data-i18n-label="navLabel">
+      <a href="../index.html#paths" data-i18n="navPaths">Three paths</a>
+      <a href="../index.html#method" data-i18n="navMethod">How we work</a>
+      <a href="./" aria-current="page" data-i18n="navTeam">Who you work with</a>
+      <a href="../index.html#measure" data-i18n="navMeasure">How we measure</a>
+      <a href="../index.html#start" data-i18n="navStart">Start</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switch" role="group" aria-label="Language" data-i18n-label="langLabel">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN<span class="lang-underline"></span></button>
+        <button type="button" class="lang-btn" data-lang="nl" aria-pressed="false">NL<span class="lang-underline"></span></button>
+        <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false">FR<span class="lang-underline"></span></button>
+      </div>
+      <a href="../index.html#start" class="nav-cta" data-i18n="navCta">Talk to us</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="section--intro" aria-labelledby="intro-h">
+    <div class="container">
+      <p class="eyebrow" data-i18n="teamEyebrow">Who you work with</p>
+      <h1 id="intro-h" class="intro-h1" data-i18n="teamPageH1">A core that stays. A network that flexes.</h1>
+      <p class="intro-p" data-i18n="teamIntro">Executxr isn't a fixed team you hire and keep paying for. It's a core that stays constant, and a network of specialists we bring in exactly as far as your programme calls for. Never more, never a bench sitting idle on your invoice.</p>
+    </div>
+  </section>
+
+  <section class="section--profiles" aria-labelledby="profiles-h">
+    <div class="container">
+      <h2 id="profiles-h" class="visually-hidden" style="position:absolute;left:-9999px">Profiles</h2>
+      <div class="multi-grid multi-grid--2">
+        <div class="profile-card" data-reveal>
+          <figure class="profile-card__photo" style="margin:0">
+            <img src="../img/cederik-haverbeke.jpg" alt="Cederik Haverbeke">
+          </figure>
+          <h3 class="profile-card__name">Cederik Haverbeke</h3>
+          <p class="profile-card__role" data-i18n="cederikRole">Founder &amp; CEO</p>
+          <p class="profile-card__bio" data-i18n="cederikBio">Cederik builds and runs organizations at the intersection of immersive technology and organizational thinking. He is CEO of Hydra Experiencenet, Managing Director of XR Valley, the Belgian XR industry network, and founder of XR Venture Studio. He is the author of the NIM Framework, a body of work on how organizations structure and communicate, and speaks regularly on XR strategy at events like AWE (Augmented World Expo) and Advanced Engineering Belgium.</p>
+          <a href="https://be.linkedin.com/in/cederik-haverbeke-288a7931" class="profile-card__link" rel="noopener" target="_blank" data-i18n="profileLink">Profile on LinkedIn</a>
+        </div>
+        <div class="profile-card" data-reveal>
+          <figure class="profile-card__photo" style="margin:0">
+            <img src="../img/sam-versele.jpg" alt="Sam Versele">
+          </figure>
+          <h3 class="profile-card__name">Sam Versele</h3>
+          <p class="profile-card__role" data-i18n="samRole">Senior Experience Advisor</p>
+          <p class="profile-card__bio" data-i18n="samBio">Sam's background is in designing visitor experiences and heritage programmes for public and cultural institutions, with hands-on delivery of large-scale digital heritage projects and a track record building multilingual audience strategies for complex, expert-heavy content.</p>
+          <a href="https://be.linkedin.com/in/samversele" class="profile-card__link" rel="noopener" target="_blank" data-i18n="profileLink">Profile on LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-block" aria-labelledby="wider-team-h">
+    <div class="container split-header">
+      <p class="team-block-label" data-i18n="rolesLabel">Behind the scenes</p>
+      <div>
+        <h2 id="wider-team-h" class="visually-hidden" style="position:absolute;left:-9999px" data-i18n="widerTeamLabel">The wider team</h2>
+        <p class="team-block-p" data-i18n="widerTeamP">Behind every programme sits a small, constant core, plus the creative directors, programme managers, venue specialists and technical leads a project actually needs, drawn from a pool of collaborators we work with on a regular basis. You get the roles the programme requires, for as long as it requires them. Never a fixed team you carry between projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--vision" aria-labelledby="vision-h">
+    <div class="container">
+      <h2 id="vision-h" class="vision-h2" data-i18n="visionH">Meaning first. Then the programme. Then the medium.</h2>
+      <p class="vision-p" data-i18n="visionP">Organizations are humanity's greatest invention, and also where the best ideas get lost between the people who understand them and the people who need to feel them. That gap is what we build for: not the technology first, but the meaning, then the programme, then the medium that fits.</p>
+    </div>
+  </section>
+
+  <section class="section--credibility">
+    <div class="container">
+      <p class="credibility-strip" data-i18n="credibilityStrip">XR Valley · Augmented World Expo · Advanced Engineering Belgium · referenced by the Flemish Parliament (Vlaams Parlement) as an external visitor-experience expert · ~30 tenders, €2.5M in experience-programme procurement.</p>
+    </div>
+  </section>
+
+  <section class="section--back">
+    <div class="container">
+      <a href="../index.html#team" class="back-link" data-i18n="backToHome">Back to the homepage</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container bar">
+    <div>
+      <p class="footer-wordmark">executxr</p>
+      <p class="footer-core" data-i18n="core">Complex message. Broad audience. We make it land.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links__group">
+        <a href="../index.html#paths" data-i18n="navPaths">Three paths</a>
+        <a href="../index.html#measure" data-i18n="navMeasure">How we measure</a>
+      </div>
+      <div class="footer-links__group">
+        <a href="../index.html#start" data-i18n="navStart">Start</a>
+        <a href="mailto:hello@executxr.com">hello@executxr.com</a>
+      </div>
+      <div class="footer-links__group">
+        <a href="https://www.linkedin.com/company/executxr/" rel="noopener" target="_blank" data-i18n="linkedin">LinkedIn</a>
+      </div>
+      <div class="lang-switch lang-switch--footer" role="group" aria-label="Language" data-i18n-label="langLabel">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-btn" data-lang="nl" aria-pressed="false">NL</button>
+        <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false">FR</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var COPY = {
+    en: {
+      metaTitle: 'Who we are — Executxr',
+      metaDescription: 'Meet the core team behind Executxr, and the network of specialists we bring in for every experience programme.',
+      skip: 'Skip to content', navLabel: 'Main navigation', langLabel: 'Language',
+      navPaths: 'Three paths', navMethod: 'How we work', navTeam: 'Who you work with', navMeasure: 'How we measure', navStart: 'Start', navCta: 'Talk to us',
+      core: 'Complex message. Broad audience. We make it land.',
+      teamEyebrow: 'Who you work with',
+      teamPageH1: 'A core that stays. A network that flexes.',
+      teamIntro: "Executxr isn't a fixed team you hire and keep paying for. It's a core that stays constant, and a network of specialists we bring in exactly as far as your programme calls for. Never more, never a bench sitting idle on your invoice.",
+      cederikRole: 'Founder & CEO',
+      cederikBio: 'Cederik builds and runs organizations at the intersection of immersive technology and organizational thinking. He is CEO of Hydra Experiencenet, Managing Director of XR Valley, the Belgian XR industry network, and founder of XR Venture Studio. He is the author of the NIM Framework, a body of work on how organizations structure and communicate, and speaks regularly on XR strategy at events like AWE (Augmented World Expo) and Advanced Engineering Belgium.',
+      samRole: 'Senior Experience Advisor',
+      samBio: "Sam's background is in designing visitor experiences and heritage programmes for public and cultural institutions, with hands-on delivery of large-scale digital heritage projects and a track record building multilingual audience strategies for complex, expert-heavy content.",
+      profileLink: 'Profile on LinkedIn',
+      rolesLabel: 'Behind the scenes',
+      widerTeamLabel: 'The wider team',
+      widerTeamP: 'Behind every programme sits a small, constant core, plus the creative directors, programme managers, venue specialists and technical leads a project actually needs, drawn from a pool of collaborators we work with on a regular basis. You get the roles the programme requires, for as long as it requires them. Never a fixed team you carry between projects.',
+      visionH: 'Meaning first. Then the programme. Then the medium.',
+      visionP: "Organizations are humanity's greatest invention, and also where the best ideas get lost between the people who understand them and the people who need to feel them. That gap is what we build for: not the technology first, but the meaning, then the programme, then the medium that fits.",
+      credibilityStrip: 'XR Valley · Augmented World Expo · Advanced Engineering Belgium · referenced by the Flemish Parliament (Vlaams Parlement) as an external visitor-experience expert · ~30 tenders, €2.5M in experience-programme procurement.',
+      backToHome: 'Back to the homepage',
+      linkedin: 'LinkedIn'
+    },
+    nl: {
+      metaTitle: 'Wie we zijn — Executxr',
+      metaDescription: "Maak kennis met de vaste kern achter Executxr, en het netwerk van specialisten dat we inschakelen voor elk experience-programma.",
+      skip: 'Naar de inhoud', navLabel: 'Hoofdnavigatie', langLabel: 'Taal',
+      navPaths: 'Drie paden', navMethod: 'Werkwijze', navTeam: 'Met wie u werkt', navMeasure: 'Meten', navStart: 'Start', navCta: 'Contact',
+      core: 'Complexe boodschap. Breed publiek. Wij maken dat ze landt.',
+      teamEyebrow: 'Met wie u werkt',
+      teamPageH1: 'Een kern die blijft. Een netwerk dat meebeweegt.',
+      teamIntro: 'Executxr is geen vast team dat u inhuurt en moet blijven betalen. Het is een kern die constant blijft, en een netwerk van specialisten die we exact zo ver inschakelen als uw programma vraagt. Nooit meer, nooit een bank die stilzit op uw factuur.',
+      cederikRole: 'Oprichter & CEO',
+      cederikBio: "Cederik bouwt en runt organisaties op het snijvlak van immersieve technologie en organisatiedenken. Hij is CEO van Hydra Experiencenet, Managing Director van XR Valley, het Belgische XR-netwerk, en oprichter van XR Venture Studio. Hij is de auteur van het NIM Framework, een body of work over hoe organisaties structureren en communiceren, en spreekt regelmatig over XR-strategie op evenementen zoals AWE (Augmented World Expo) en Advanced Engineering Belgium.",
+      samRole: 'Senior Experience Advisor',
+      samBio: "Sams achtergrond ligt in het ontwerpen van bezoekerservaringen en erfgoedprogramma's voor publieke en culturele instellingen, met hands-on uitvoering van grootschalige digitale erfgoedprojecten en een trackrecord in het bouwen van meertalige publieksstrategieën voor complexe, expertzware inhoud.",
+      profileLink: 'Profiel op LinkedIn',
+      rolesLabel: 'Achter de schermen',
+      widerTeamLabel: 'Het bredere team',
+      widerTeamP: "Achter elk programma zit een kleine, vaste kern, aangevuld met de creative directors, programmamanagers, venue-specialisten en technische leads die een project effectief nodig heeft, uit een pool van vaste medewerkers waarmee we regelmatig samenwerken. U krijgt de rollen die het programma vraagt, zolang het ze nodig heeft. Nooit een vast team dat u tussen projecten meesleept.",
+      visionH: 'Eerst de betekenis. Dan het programma. Dan pas het middel.',
+      visionP: 'Organisaties zijn de grootste uitvinding van de mensheid, en ook de plek waar de beste ideeën verloren gaan tussen wie ze begrijpt en wie ze moet voelen. Die kloof is waar wij voor bouwen: niet eerst de technologie, maar de betekenis, dan het programma, dan het middel dat past.',
+      credibilityStrip: "XR Valley · Augmented World Expo · Advanced Engineering Belgium · door het Vlaams Parlement geraadpleegd als extern expert bezoekerservaring · ongeveer 30 tenders, €2,5 miljoen aan procurement in belevingsprogramma's.",
+      backToHome: 'Terug naar de homepage',
+      linkedin: 'LinkedIn'
+    },
+    fr: {
+      metaTitle: 'Qui nous sommes — Executxr',
+      metaDescription: "Découvrez le noyau derrière Executxr, et le réseau de spécialistes que nous mobilisons pour chaque programme d'expérience.",
+      skip: 'Aller au contenu', navLabel: 'Navigation principale', langLabel: 'Langue',
+      navPaths: 'Trois parcours', navMethod: 'Méthode', navTeam: 'Vos interlocuteurs', navMeasure: 'Mesure', navStart: 'Commencer', navCta: 'Nous contacter',
+      core: "Message complexe. Large public. Nous faisons en sorte qu'il atteigne son public.",
+      teamEyebrow: 'Vos interlocuteurs',
+      teamPageH1: "Un noyau stable. Un réseau qui s'adapte.",
+      teamIntro: "Executxr n'est pas une équipe fixe que vous engagez et devez continuer à payer. C'est un noyau stable, et un réseau de spécialistes que nous mobilisons exactement à la mesure de votre programme. Jamais plus, jamais un banc de touche qui dort sur votre facture.",
+      cederikRole: 'Fondateur & CEO',
+      cederikBio: "Cederik construit et dirige des organisations à l'intersection de la technologie immersive et de la pensée organisationnelle. Il est CEO de Hydra Experiencenet, Managing Director de XR Valley, le réseau XR belge, et fondateur de XR Venture Studio. Il est l'auteur du NIM Framework, un corpus sur la manière dont les organisations se structurent et communiquent, et intervient régulièrement sur la stratégie XR lors d'événements comme AWE (Augmented World Expo) et Advanced Engineering Belgium.",
+      samRole: 'Senior Experience Advisor',
+      samBio: "Le parcours de Sam porte sur la conception d'expériences visiteurs et de programmes patrimoniaux pour des institutions publiques et culturelles, avec la livraison concrète de grands projets de patrimoine numérique et un track record dans la construction de stratégies d'audience multilingues pour des contenus complexes et pointus.",
+      profileLink: 'Profil sur LinkedIn',
+      rolesLabel: 'Dans les coulisses',
+      widerTeamLabel: "L'équipe élargie",
+      widerTeamP: "Derrière chaque programme se trouve un noyau petit et stable, complété par les directeurs créatifs, chefs de programme, spécialistes de lieux et responsables techniques dont un projet a réellement besoin, puisés dans un vivier de collaborateurs avec qui nous travaillons régulièrement. Vous obtenez les rôles dont le programme a besoin, aussi longtemps qu'il en a besoin. Jamais une équipe fixe que vous portez d'un projet à l'autre.",
+      visionH: "D'abord le sens. Ensuite le programme. Le moyen en dernier.",
+      visionP: "Les organisations sont la plus grande invention de l'humanité, et aussi l'endroit où les meilleures idées se perdent entre ceux qui les comprennent et ceux qui doivent les ressentir. Cet écart, c'est ce pour quoi nous construisons : pas la technologie d'abord, mais le sens, puis le programme, puis le moyen qui convient.",
+      credibilityStrip: "XR Valley · Augmented World Expo · Advanced Engineering Belgium · consulté par le Parlement flamand (Vlaams Parlement) en tant qu'expert externe en expérience visiteur · environ 30 appels d'offres, 2,5 M€ d'achats en programmes d'expérience.",
+      backToHome: "Retour à l'accueil",
+      linkedin: 'LinkedIn'
+    }
+  };
+
+  var state = { lang: 'en' };
+
+  function applyLang(lang) {
+    var t = COPY[lang] || COPY.en;
+    state.lang = lang;
+    document.documentElement.lang = lang;
+    document.title = t.metaTitle;
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', t.metaDescription);
+    var ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', t.metaTitle);
+    var ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', t.metaDescription);
+    var ogImage = document.querySelector('meta[property="og:image"]');
+    if (ogImage) ogImage.setAttribute('content', 'https://executxr.com/img/og-' + lang + '.png');
+    var ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) ogLocale.setAttribute('content', lang === 'nl' ? 'nl_BE' : lang === 'fr' ? 'fr_BE' : 'en_US');
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (t[key] != null) el.textContent = t[key];
+    });
+    document.querySelectorAll('[data-i18n-label]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-label');
+      if (t[key] != null) el.setAttribute('aria-label', t[key]);
+    });
+    document.querySelectorAll('.lang-btn').forEach(function (btn) {
+      btn.setAttribute('aria-pressed', String(btn.getAttribute('data-lang') === lang));
+    });
+  }
+
+  function setLang(lang) {
+    if (!COPY[lang]) return;
+    try { window.localStorage.setItem('executxr-site-lang', lang); } catch (e) {}
+    applyLang(lang);
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () { setLang(btn.getAttribute('data-lang')); });
+  });
+
+  var initialLang = 'en';
+  try {
+    var saved = window.localStorage.getItem('executxr-site-lang');
+    if (saved && COPY[saved]) initialLang = saved;
+  } catch (e) {}
+  applyLang(initialLang);
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion) {
+    var revealItems = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting && entry.boundingClientRect.top >= 0) return;
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+    var sweep = function () {
+      revealItems.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < (window.innerHeight || 0)) { el.classList.add('is-visible'); io.unobserve(el); }
+      });
+    };
+    revealItems.forEach(function (el) { io.observe(el); });
+    sweep();
+    window.addEventListener('load', sweep);
+    window.addEventListener('resize', sweep);
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.setTimeout(function () { revealItems.forEach(function (el) { el.classList.add('is-visible'); }); }, 2600);
+  } else {
+    document.querySelectorAll('[data-reveal]').forEach(function (el) { el.classList.add('is-visible'); });
+  }
+})();
+</script>
+</body>
+</html>
