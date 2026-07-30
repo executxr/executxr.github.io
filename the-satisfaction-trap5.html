@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Satisfaction Trap — Executxr Whitepaper</title>
+<meta name="description" content="Why high ratings don't fill museums, science centers, or experience spaces. Download Executxr's whitepaper on the 3R framework.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #1C1B1A;
+    --charcoal-deep: #0E0D0D;
+    --cream: #F2EFE9;
+    --terracotta: #B23B22;
+    --terracotta-hover: #963019;
+    --coral: #D9694A;
+    --teal: #3A5A63;
+    --muted: #A39D93;
+    --muted-dark: #78726A;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Public Sans', Helvetica, Arial, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--charcoal);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    background: var(--charcoal);
+    padding: 28px 0;
+  }
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    text-decoration: none;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 64px 0 88px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -30%;
+    right: -15%;
+    width: 60%;
+    height: 160%;
+    background: radial-gradient(circle, rgba(178,59,34,0.28) 0%, rgba(178,59,34,0) 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+  .eyebrow .rule { width: 32px; height: 4px; background: var(--terracotta); display: inline-block; }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+  .hero p.lede {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--cream);
+    opacity: 0.88;
+    max-width: 46ch;
+    margin-bottom: 36px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    padding: 16px 26px;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .btn-primary { background: var(--terracotta); color: var(--cream); }
+  .btn-primary:hover { background: var(--terracotta-hover); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid var(--muted-dark);
+  }
+  .btn-ghost:hover { border-color: var(--cream); }
+
+  /* form card in hero */
+  .form-card {
+    background: var(--cream);
+    color: var(--charcoal);
+    border-radius: 4px;
+    padding: 36px 32px;
+  }
+  .form-card h2 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .form-card p.hint {
+    font-size: 14px;
+    color: var(--muted-dark);
+    margin-bottom: 24px;
+  }
+  #wp-form .hs-form-field label {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+    display: block;
+  }
+  #wp-form input[type="text"],
+  #wp-form input[type="email"],
+  #wp-form input[type="tel"] {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 15px;
+    padding: 12px 14px;
+    border: 1px solid #D5CFC4;
+    border-radius: 3px;
+    background: #fff;
+    color: var(--charcoal);
+  }
+  #wp-form .hs-form-field { margin-bottom: 16px; }
+  #wp-submit {
+    width: 100%;
+    background: var(--terracotta);
+    color: var(--cream);
+    border: none;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 14px 20px;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  #wp-submit:hover { background: var(--terracotta-hover); }
+  #wp-submit:disabled { opacity: 0.6; cursor: default; }
+  #wp-success p a {
+    color: var(--terracotta);
+    font-weight: 700;
+    text-decoration: underline;
+  }
+  .consent-note {
+    font-size: 12px;
+    color: var(--muted-dark);
+    margin-top: 14px;
+  }
+
+  /* ---------- What's inside ---------- */
+  .section-dark { background: var(--charcoal); color: var(--cream); padding: 88px 0; }
+  .section-light { background: var(--cream); color: var(--charcoal); padding: 88px 0; }
+
+  .section-head { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+  .section-head .eyebrow { justify-content: center; }
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 40px;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  .section-head p { font-size: 17px; opacity: 0.85; }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 48px;
+  }
+  .feature {
+    border-top: 2px solid var(--terracotta);
+    padding-top: 20px;
+  }
+  .feature .num {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .feature h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 21px;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .feature p { font-size: 15.5px; opacity: 0.85; }
+
+  /* ---------- FAQ ---------- */
+  .faq-list { max-width: 760px; margin: 0 auto; }
+  details {
+    border-bottom: 1px solid #D5CFC4;
+    padding: 22px 0;
+  }
+  details summary {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after {
+    content: "+";
+    font-family: var(--font-mono);
+    font-size: 20px;
+    color: var(--terracotta);
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+  }
+  details[open] summary::after { content: "\2212"; }
+  details p {
+    font-size: 15.5px;
+    color: var(--muted-dark);
+    margin-top: 12px;
+    max-width: 62ch;
+  }
+
+  /* ---------- Closing CTA ---------- */
+  .cta-section {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 96px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: "";
+    position: absolute;
+    bottom: -40%;
+    left: -10%;
+    width: 55%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(178,59,34,0.22) 0%, rgba(178,59,34,0) 70%);
+  }
+  .cta-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+  .cta-section .rule { width: 40px; height: 4px; background: var(--terracotta); margin: 0 auto 28px; }
+  .cta-section h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: -0.01em;
+    margin-bottom: 18px;
+  }
+  .cta-section p { font-size: 16px; opacity: 0.85; margin-bottom: 32px; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--charcoal-deep);
+    color: var(--muted);
+    padding: 32px 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 42px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .section-head h2 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="https://executxr.com">executxr</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="rule"></span>EXECUTXR / EXPERIENCE PROGRAM RESEARCH</div>
+      <h1>The Satisfaction Trap</h1>
+      <p class="lede">Cultural and heritage institutions average 4.62/5 with visitors — yet attendance is still below pre-2020 levels. Satisfaction isn't the same as impact. This paper introduces the 3R framework to diagnose what's actually missing, with a dedicated read for heritage, science centers, government &amp; tourism, and corporate innovation.</p>
+      <a href="#whitepaper-form" class="btn btn-primary">Get the whitepaper ↓</a>
+    </div>
+
+    <div class="form-card" id="whitepaper-form">
+      <h2 id="form-heading">Get the whitepaper</h2>
+      <p class="hint" id="form-hint">Name, email, and organization — that's it.</p>
+      <form id="wp-form" novalidate>
+        <div class="hs-form-field">
+          <label for="firstname">First name*</label>
+          <input type="text" id="firstname" name="firstname" required>
+        </div>
+        <div class="hs-form-field">
+          <label for="lastname">Last name*</label>
+          <input type="text" id="lastname" name="lastname" required>
+        </div>
+        <div class="hs-form-field">
+          <label for="email">Email*</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="hs-form-field">
+          <label for="company">Company name</label>
+          <input type="text" id="company" name="company">
+        </div>
+        <div class="hs-form-field">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        <div class="hs-form-field" style="display:flex; align-items:flex-start; gap:8px;">
+          <input type="checkbox" id="consent" name="consent" required style="width:auto; margin-top:4px;">
+          <label for="consent" style="font-weight:400; font-size:13px;">I agree to be contacted by Executxr about this download. (Privacy policy: coming soon)</label>
+        </div>
+        <div id="wp-error" style="display:none; color:#B23B22; font-size:13px; margin-bottom:12px;"></div>
+        <button type="submit" id="wp-submit">Get the whitepaper</button>
+      </form>
+      <div id="wp-success" style="display:none;">
+        <p style="font-size:16px; line-height:1.6;">Thanks — <a href="https://25692968.fs1.hubspotusercontent-eu1.net/hubfs/25692968/the-satisfaction-trap.pdf" style="color:#B23B22; font-weight:700; text-decoration:underline;">click here to download The Satisfaction Trap</a>.</p>
+      </div>
+      <p class="consent-note">We'll only use this to send the paper and occasional relevant updates. No spam.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow"><span class="rule"></span>WHAT'S INSIDE</div>
+      <h2>A 5-page diagnostic</h2>
+      <p>Grounded in current sector data, not opinion.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature">
+        <span class="num">01</span>
+        <h3>The satisfaction paradox</h3>
+        <p>Why 4.62/5 ratings and flat attendance can both be true at the same time — and what that says about what you're actually measuring.</p>
+      </div>
+      <div class="feature">
+        <span class="num">02</span>
+        <h3>The 3R framework</h3>
+        <p>The three questions to ask instead of "was the visit good": right visitor, comes back, tells others.</p>
+      </div>
+      <div class="feature">
+        <span class="num">03</span>
+        <h3>Cultural heritage</h3>
+        <p>Why digitizing a collection isn't the same as creating a reason to visit, return, or recommend it.</p>
+      </div>
+      <div class="feature">
+        <span class="num">04</span>
+        <h3>Science &amp; discovery centers</h3>
+        <p>What ECSITE 2026 signaled about moving past tech-for-its-own-sake toward real engagement design.</p>
+      </div>
+      <div class="feature">
+        <span class="num">05</span>
+        <h3>Government &amp; tourism</h3>
+        <p>Why repeat visitation and word-of-mouth — not satisfaction — are what funding reviews actually ask about.</p>
+      </div>
+      <div class="feature">
+        <span class="num">06</span>
+        <h3>Corporate innovation</h3>
+        <p>Why internal showrooms fail for the same reason museums do — and how to build the ROI case properly.</p>
+      </div>
+      <div class="feature">
+        <span class="num">07</span>
+        <h3>Diagnosis before technology</h3>
+        <p>Why we answer the 3R's before recommending any format, vendor, or technology — XR included.</p>
+      </div>
+      <div class="feature">
+        <span class="num">08</span>
+        <h3>Sourced, not asserted</h3>
+        <p>Every figure links directly to its source — accesso, AAM, Emerald, ECSITE, and EU tourism data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-light">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow"><span class="rule"></span>COMMON QUESTIONS</div>
+      <h2>A few things people ask</h2>
+      <p>Before downloading.</p>
+    </div>
+    <div class="faq-list">
+      <details open>
+        <summary>Is this whitepaper trying to sell me XR?</summary>
+        <p>No. The paper deliberately argues the opposite: start with the 3R diagnosis, not a technology decision. XR comes up once, at the end, as one possible way to close the gap — never the starting point.</p>
+      </details>
+      <details>
+        <summary>Who is this actually for?</summary>
+        <p>Anyone who already has a digitized collection, an archive, or a physical space — cultural heritage sites, science and discovery centers, government and tourism bodies, or corporate innovation teams — and isn't certain the investment is landing with the right visitor.</p>
+      </details>
+      <details>
+        <summary>What is a Discovery, exactly?</summary>
+        <p>A focused, honest diagnostic session with Executxr to answer the 3R's for your organization — before any recommendation on format, vendor, or technology.</p>
+      </details>
+      <details>
+        <summary>Do I need to already have a technology plan?</summary>
+        <p>No — most organizations we talk to don't. That's the point of starting with Discovery rather than a vendor conversation.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="wrap cta-inner">
+    <div class="rule"></div>
+    <h2>Where does your organization stand on the 3R's?</h2>
+    <p>Prefer to talk it through first? Book a focused Discovery conversation with Executxr — no technology pitch, just an honest look at where the gap actually is.</p>
+    <a class="btn btn-primary" href="https://meetings-eu1.hubspot.com/sam117" target="_blank" rel="noopener">Book a Discovery call →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Executxr. All rights reserved.</div>
+</footer>
+
+<script>
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : '';
+  }
+
+  document.getElementById('wp-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const errorBox = document.getElementById('wp-error');
+    const submitBtn = document.getElementById('wp-submit');
+    errorBox.style.display = 'none';
+
+    if (!form.checkValidity()) {
+      errorBox.textContent = 'Please fill in all required fields.';
+      errorBox.style.display = 'block';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    const payload = {
+      fields: [
+        { name: 'firstname', value: form.firstname.value },
+        { name: 'lastname', value: form.lastname.value },
+        { name: 'email', value: form.email.value },
+        { name: 'company', value: form.company.value },
+        { name: 'phone', value: form.phone.value }
+      ],
+      context: {
+        pageUri: window.location.href,
+        pageName: document.title,
+        hutk: getCookie('hubspotutk')
+      }
+    };
+
+    fetch('https://api.hsforms.com/submissions/v3/integration/submit/25692968/71f5557e-de43-46be-bad8-e47fa5b2f381', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res) {
+      if (!res.ok) throw new Error('submit failed');
+      return res.json();
+    })
+    .then(function() {
+      form.style.display = 'none';
+      document.getElementById('form-heading').style.display = 'none';
+      document.getElementById('form-hint').style.display = 'none';
+      document.getElementById('wp-success').style.display = 'block';
+    })
+    .catch(function() {
+      errorBox.textContent = "Something went wrong — please try again, or email us directly.";
+      errorBox.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Get the whitepaper';
+    });
+  });
+</script>
+
+</body>
+</html>
