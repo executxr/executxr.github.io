@@ -515,8 +515,15 @@
       body: JSON.stringify(payload)
     })
     .then(function(res) {
-      if (!res.ok) throw new Error('submit failed');
-      return res.json();
+      return res.text().then(function(bodyText) {
+        if (!res.ok) {
+          var err = new Error('submit failed');
+          err.status = res.status;
+          err.body = bodyText;
+          throw err;
+        }
+        return bodyText;
+      });
     })
     .then(function() {
       form.style.display = 'none';
@@ -524,8 +531,21 @@
       document.getElementById('form-hint').style.display = 'none';
       document.getElementById('wp-success').style.display = 'block';
     })
-    .catch(function() {
-      errorBox.textContent = "Something went wrong — please try again, or email us directly.";
+    .catch(function(err) {
+      var detail;
+      if (err && err.status) {
+        // The request reached HubSpot, but it rejected it — show exactly why.
+        var reason = err.body;
+        try { reason = JSON.parse(err.body).message || err.body; } catch (e) {}
+        detail = "Something went wrong (HTTP " + err.status + "): " + reason;
+      } else {
+        // The request never got a response at all — usually a network-level block
+        // (ad blocker, corporate firewall/proxy) rather than a HubSpot error.
+        detail = "Something went wrong — the request to our form service (api.hsforms.com) never completed. " +
+                 "This is often caused by an ad blocker, antivirus, or corporate network filter blocking that domain. " +
+                 "Please try again, try a different network, or email us directly.";
+      }
+      errorBox.textContent = detail;
       errorBox.style.display = 'block';
       submitBtn.disabled = false;
       submitBtn.textContent = 'Get the whitepaper';
