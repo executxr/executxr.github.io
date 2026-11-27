@@ -18,6 +18,9 @@
   }
   function loadAnalytics() {
     if (!allowed() || loaded) return;
+    // HubSpot also reads window.location independently of setPath. Clean the
+    // address before loading any third-party tracker, not just its API input.
+    history.replaceState(history.state, '', safePath());
     loaded = true;
     window._hsq = window._hsq || [];
     window._hsq.push(['doNotTrack', {track:true}]);
